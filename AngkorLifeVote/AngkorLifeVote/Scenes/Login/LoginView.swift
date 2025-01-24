@@ -12,47 +12,61 @@ struct LoginView: View {
     var body: some View {
         GeometryReader { proxy in
             VStack() {
-                // 상단 텍스트
-                Spacer()
-                VStack(spacing: 5) {
-                    Text("WORLD MISS UNIVERSITY")
-                        .font(.kpMedium(.title))
-                        .foregroundColor(.white)
-                        .padding(.horizontal)
-                    Text("CAMBODIA 2024")
-                        .font(.kpLight(size: 25))
-                        .foregroundColor(.white)
-                }
-                .padding(.top, 20)
                 
-                HStack {
-                    Spacer()
-                    Image(.crown)
-                        .resizable()
-                        .scaledToFit()
-                        .frame(width: proxy.size.width * 0.6)
-                        .padding(.bottom, 20)
-                    Spacer()
-                }
+                Text("WORLD MISS UNIVERSITY")
+                    .font(.kpMedium(.title))
+                    .foregroundColor(.white)
+                    .padding(.horizontal)
+                    .multilineTextAlignment(.center)
+                
+                Text("CAMBODIA 2024")
+                    .font(.kpLight(size: 25))
+                    .foregroundColor(.white)
+                    .padding()
+                
+                Image(.crown)
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: proxy.size.width * 0.6)
+                    
                 Text("Cast your vote for the brightest candidate!\nWorld Miss University voting starts now!")
                     .font(.kpExtraLight())
                     .foregroundColor(.white)
                     .multilineTextAlignment(.center)
+                    .padding(.bottom)
                 
-                TextField("Enter your ID", text: $text)
-                               .padding()
-                               .background(Color(white: 0.1)) // 어두운 배경
-                               .foregroundColor(.white) // 텍스트 색상
-                               .cornerRadius(8) // 모서리 둥글게
-                               .overlay(
-                                   RoundedRectangle(cornerRadius: 8)
-                                    .stroke(Color.gray, lineWidth: 0.5) // 테두리 설정
-                               )
-                               .padding(.horizontal, 20) // 양옆 여백 추가
-                Spacer()
+                VStack(spacing: 30) {
+                    TextField("", text: $text, prompt: Text("Enter your ID").foregroundColor(.gray))
+                        .padding()
+                        .background(Color(white: 0.12))
+                        .foregroundColor(.gray)
+                        .clipShape(RoundedRectangle(cornerRadius: 8))
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 8)
+                                .stroke(Color.rgb(red: 219, green: 219, blue: 219, opacity: 0.8), lineWidth: 0.5)
+                        )
+                        .padding(.horizontal)
+                    Button(action: {
+                        print("Log in pressed")
+                    }) {
+                        Text("Log in")
+                            .font(.kpBold(size: 18))
+                            .foregroundColor(.white)
+                            .frame(maxWidth: .infinity)
+                            .padding()
+                            .background(.accent)
+                            .clipShape(RoundedRectangle(cornerRadius: 999))
+                    }
+                    .padding(.horizontal)
+                }
+                Image(.earthBackground)
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: .infinity)
             }
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+            .background(Color.black)
         }
-        .background(Color.black) // 배경색 설정
         .edgesIgnoringSafeArea(.all) // 화면 전체 사용
     }
 }
