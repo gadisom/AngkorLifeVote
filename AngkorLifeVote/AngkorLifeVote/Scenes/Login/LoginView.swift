@@ -8,11 +8,12 @@
 import SwiftUI
 
 struct LoginView: View {
-    @State private var text = ""
+    @EnvironmentObject var userSession: UserSession
+    @ObservedObject var viewModel: LoginViewModel
     var body: some View {
         GeometryReader { proxy in
             VStack() {
-                
+                Spacer()
                 Text("WORLD MISS UNIVERSITY")
                     .font(.kpMedium(.title))
                     .foregroundColor(.white)
@@ -36,7 +37,7 @@ struct LoginView: View {
                     .padding(.bottom)
                 
                 VStack(spacing: 30) {
-                    TextField("", text: $text, prompt: Text("Enter your ID").foregroundColor(.gray))
+                    TextField("", text: $viewModel.userID, prompt: Text("Enter your ID").foregroundColor(.gray))
                         .padding()
                         .background(Color(white: 0.12))
                         .foregroundColor(.gray)
@@ -47,8 +48,9 @@ struct LoginView: View {
                         )
                         .padding(.horizontal)
                     Button(action: {
-                        print("Log in pressed")
-                    }) {
+                        userSession.userID = viewModel.userID
+                        viewModel.onLoginSuccess?()
+                    }){
                         Text("Log in")
                             .font(.kpBold(size: 18))
                             .foregroundColor(.white)
@@ -59,18 +61,20 @@ struct LoginView: View {
                     }
                     .padding(.horizontal)
                 }
+                Spacer()
                 Image(.earthBackground)
                     .resizable()
                     .scaledToFit()
-                    .frame(width: .infinity)
+                    .frame(width: proxy.size.width)
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             .background(Color.black)
+            .edgesIgnoringSafeArea(.bottom)
         }
-        .edgesIgnoringSafeArea(.all) // 화면 전체 사용
     }
 }
 
 #Preview {
-    LoginView()
+    LoginView(viewModel: LoginViewModel())
+        .environmentObject(UserSession())
 }
