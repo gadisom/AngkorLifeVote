@@ -11,7 +11,7 @@ import SwiftUI
 struct AngkorLifeVoteApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            LoginView()
         }
     }
 }

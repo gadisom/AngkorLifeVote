@@ -37,6 +37,7 @@
 		BD764E2A2D426BCB008E94E5 /* KantumruyPro-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BD764E152D426BCB008E94E5 /* KantumruyPro-Italic.ttf */; };
 		BD764E2B2D426BCB008E94E5 /* KantumruyPro-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BD764E1A2D426BCB008E94E5 /* KantumruyPro-Regular.ttf */; };
 		BD764E2C2D426BCB008E94E5 /* KantumruyPro-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BD764E122D426BCB008E94E5 /* KantumruyPro-BoldItalic.ttf */; };
+		BD764E302D432381008E94E5 /* Font+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD764E2F2D432381008E94E5 /* Font+Extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -72,6 +73,7 @@
 		BD764E1D2D426BCB008E94E5 /* KantumruyPro-Thin.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "KantumruyPro-Thin.ttf"; sourceTree = "<group>"; };
 		BD764E1E2D426BCB008E94E5 /* KantumruyPro-ThinItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "KantumruyPro-ThinItalic.ttf"; sourceTree = "<group>"; };
 		BD764E2D2D426C37008E94E5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		BD764E2F2D432381008E94E5 /* Font+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Font+Extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,6 +114,7 @@
 				BD764DFF2D42615C008E94E5 /* Scenes */,
 				BD764DE72D425A3A008E94E5 /* ContentView.swift */,
 				BD764E0F2D4261CA008E94E5 /* Resources */,
+				BD764E2E2D432370008E94E5 /* Utils */,
 			);
 			path = AngkorLifeVote;
 			sourceTree = "<group>";
@@ -219,6 +222,14 @@
 			path = Font;
 			sourceTree = "<group>";
 		};
+		BD764E2E2D432370008E94E5 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				BD764E2F2D432381008E94E5 /* Font+Extension.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -319,6 +330,7 @@
 				BD764DEA2D425A3A008E94E5 /* ContentView.swift in Sources */,
 				BD764E022D426176008E94E5 /* LoginView.swift in Sources */,
 				BD764E0C2D4261B3008E94E5 /* ProfileView.swift in Sources */,
+				BD764E302D432381008E94E5 /* Font+Extension.swift in Sources */,
 				BD764DEF2D4260DF008E94E5 /* AppCoordinator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
