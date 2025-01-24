@@ -29,7 +29,8 @@ final class AppCoordinator: ObservableObject {
     }
     
     func showMainFlow() {
-
+        let mainCoordinator = MainCoordinator()
+        childCoordinator = mainCoordinator
     }
     
     // childCoordinator에 따라 적절한 View를 생성
