@@ -6,3 +6,11 @@
 //
 
 import Foundation
+
+final class UserSession: ObservableObject {
+    @Published var userID: String = ""
+    
+    func resetSession() {
+        userID = ""
+    }
+}

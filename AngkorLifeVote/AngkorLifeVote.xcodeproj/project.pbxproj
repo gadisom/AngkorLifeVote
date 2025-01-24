@@ -39,6 +39,7 @@
 		BD764E2C2D426BCB008E94E5 /* KantumruyPro-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BD764E122D426BCB008E94E5 /* KantumruyPro-BoldItalic.ttf */; };
 		BD764E302D432381008E94E5 /* Font+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD764E2F2D432381008E94E5 /* Font+Extension.swift */; };
 		BD764E322D435FC4008E94E5 /* Color+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD764E312D435FC4008E94E5 /* Color+Extension.swift */; };
+		BD764E342D436C06008E94E5 /* UserSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD764E332D436C06008E94E5 /* UserSession.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -76,6 +77,7 @@
 		BD764E2D2D426C37008E94E5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		BD764E2F2D432381008E94E5 /* Font+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Font+Extension.swift"; sourceTree = "<group>"; };
 		BD764E312D435FC4008E94E5 /* Color+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Extension.swift"; sourceTree = "<group>"; };
+		BD764E332D436C06008E94E5 /* UserSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSession.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -126,6 +128,7 @@
 			children = (
 				BD764DE52D425A3A008E94E5 /* AngkorLifeVoteApp.swift */,
 				BD764DEE2D4260DF008E94E5 /* AppCoordinator.swift */,
+				BD764E332D436C06008E94E5 /* UserSession.swift */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -334,6 +337,7 @@
 				BD764E022D426176008E94E5 /* LoginView.swift in Sources */,
 				BD764E0C2D4261B3008E94E5 /* ProfileView.swift in Sources */,
 				BD764E322D435FC4008E94E5 /* Color+Extension.swift in Sources */,
+				BD764E342D436C06008E94E5 /* UserSession.swift in Sources */,
 				BD764E302D432381008E94E5 /* Font+Extension.swift in Sources */,
 				BD764DEF2D4260DF008E94E5 /* AppCoordinator.swift in Sources */,
 			);

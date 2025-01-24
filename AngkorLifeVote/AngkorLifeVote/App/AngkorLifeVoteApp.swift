@@ -9,9 +9,13 @@ import SwiftUI
 
 @main
 struct AngkorLifeVoteApp: App {
+    @StateObject private var userSession = UserSession()
+    @StateObject private var appCoordinator = AppCoordinator()
     var body: some Scene {
         WindowGroup {
-            LoginView()
+            ContentView()
+                .environmentObject(userSession)
+                .environmentObject(appCoordinator)
         }
     }
 }
