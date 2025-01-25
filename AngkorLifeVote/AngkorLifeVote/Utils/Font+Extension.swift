@@ -12,6 +12,7 @@ extension Font {
     private static let kpFontMediumName = "KantumruyPro-Medium"
     private static let kpFontLightName = "KantumruyPro-Light"
     private static let kpFontExtraLightName = "KantumruyPro-ExtraLight"
+    private static let kpFontRegularName = "KantumruyPro-Regular"
     
     static func kpBold(
         _ style: TextStyle? = nil,
@@ -62,6 +63,19 @@ extension Font {
             return .custom(kpFontExtraLightName, size: UIFont.preferredFont(forTextStyle: UIFont.TextStyle(style)).pointSize, relativeTo: style)
         } else {
             return .custom(kpFontExtraLightName, size: UIFont.preferredFont(forTextStyle: .body).pointSize)
+        }
+    }
+    
+    static func kpRegular(
+        _ style: TextStyle? = nil,
+        size: CGFloat? = nil
+    ) -> Font {
+        if let size = size {
+            return .custom(kpFontRegularName, size: size, relativeTo: style ?? .body)
+        } else if let style = style {
+            return .custom(kpFontRegularName, size: UIFont.preferredFont(forTextStyle: UIFont.TextStyle(style)).pointSize, relativeTo: style)
+        } else {
+            return .custom(kpFontRegularName, size: UIFont.preferredFont(forTextStyle: .body).pointSize)
         }
     }
     

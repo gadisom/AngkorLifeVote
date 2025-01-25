@@ -41,6 +41,7 @@
 		BD764E322D435FC4008E94E5 /* Color+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD764E312D435FC4008E94E5 /* Color+Extension.swift */; };
 		BD764E342D436C06008E94E5 /* UserSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD764E332D436C06008E94E5 /* UserSession.swift */; };
 		BD764E372D44B229008E94E5 /* CountDownView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD764E362D44B229008E94E5 /* CountDownView.swift */; };
+		BD764E3A2D44B35A008E94E5 /* VotingInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD764E392D44B35A008E94E5 /* VotingInfoView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -80,6 +81,7 @@
 		BD764E312D435FC4008E94E5 /* Color+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Extension.swift"; sourceTree = "<group>"; };
 		BD764E332D436C06008E94E5 /* UserSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSession.swift; sourceTree = "<group>"; };
 		BD764E362D44B229008E94E5 /* CountDownView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountDownView.swift; sourceTree = "<group>"; };
+		BD764E392D44B35A008E94E5 /* VotingInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VotingInfoView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -184,6 +186,7 @@
 		BD764E052D426182008E94E5 /* Main */ = {
 			isa = PBXGroup;
 			children = (
+				BD764E382D44B346008E94E5 /* VotingInfo */,
 				BD764E352D44B20F008E94E5 /* CountDown */,
 				BD764E062D426189008E94E5 /* MainView.swift */,
 				BD764E082D42618F008E94E5 /* MainViewModel.swift */,
@@ -245,6 +248,14 @@
 				BD764E362D44B229008E94E5 /* CountDownView.swift */,
 			);
 			path = CountDown;
+			sourceTree = "<group>";
+		};
+		BD764E382D44B346008E94E5 /* VotingInfo */ = {
+			isa = PBXGroup;
+			children = (
+				BD764E392D44B35A008E94E5 /* VotingInfoView.swift */,
+			);
+			path = VotingInfo;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -342,6 +353,7 @@
 				BD764E092D42618F008E94E5 /* MainViewModel.swift in Sources */,
 				BD764DE92D425A3A008E94E5 /* AngkorLifeVoteApp.swift in Sources */,
 				BD764DFE2D426154008E94E5 /* NetworkService.swift in Sources */,
+				BD764E3A2D44B35A008E94E5 /* VotingInfoView.swift in Sources */,
 				BD764DFB2D426140008E94E5 /* User.swift in Sources */,
 				BD764E0E2D4261B9008E94E5 /* ProfileViewModel.swift in Sources */,
 				BD764DF42D42611C008E94E5 /* LoginCoordinator.swift in Sources */,

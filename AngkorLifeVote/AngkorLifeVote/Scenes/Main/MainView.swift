@@ -24,6 +24,14 @@ struct MainView: View {
                         CountDownView()
                             .frame(width: proxy.size.width * 0.8, alignment: .center)
                         
+                        Image(.earthBackground)
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: proxy.size.width)
+                        
+                        VotingInfoView()
+                            .frame(width: proxy.size.width, height: 536)
+                        
                     }
                 }
                 .frame(maxHeight: .infinity)

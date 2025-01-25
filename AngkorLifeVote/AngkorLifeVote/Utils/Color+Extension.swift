@@ -20,4 +20,6 @@ extension Color {
     
     static let gray185 = rgb(red: 185, green: 185, blue: 185)
     static let gray215 = rgb(red: 215, green: 215, blue: 215)
+    static let gray219 = rgb(red: 219, green: 219, blue: 219)
+
 }
