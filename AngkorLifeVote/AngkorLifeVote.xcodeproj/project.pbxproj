@@ -16,7 +16,7 @@
 		BD764DF62D426125008E94E5 /* MainCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD764DF52D426125008E94E5 /* MainCoordinator.swift */; };
 		BD764DF82D426130008E94E5 /* ProfileCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD764DF72D426130008E94E5 /* ProfileCoordinator.swift */; };
 		BD764DFB2D426140008E94E5 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD764DFA2D426140008E94E5 /* User.swift */; };
-		BD764DFE2D426154008E94E5 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD764DFD2D426154008E94E5 /* NetworkService.swift */; };
+		BD764DFE2D426154008E94E5 /* CandidateServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD764DFD2D426154008E94E5 /* CandidateServiceProtocol.swift */; };
 		BD764E022D426176008E94E5 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD764E012D426176008E94E5 /* LoginView.swift */; };
 		BD764E042D42617D008E94E5 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD764E032D42617D008E94E5 /* LoginViewModel.swift */; };
 		BD764E072D426189008E94E5 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD764E062D426189008E94E5 /* MainView.swift */; };
@@ -42,6 +42,12 @@
 		BD764E342D436C06008E94E5 /* UserSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD764E332D436C06008E94E5 /* UserSession.swift */; };
 		BD764E372D44B229008E94E5 /* CountDownView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD764E362D44B229008E94E5 /* CountDownView.swift */; };
 		BD764E3A2D44B35A008E94E5 /* VotingInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD764E392D44B35A008E94E5 /* VotingInfoView.swift */; };
+		BD764E3D2D450CFF008E94E5 /* CandidateItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD764E3C2D450CFF008E94E5 /* CandidateItem.swift */; };
+		BD764E3F2D450D35008E94E5 /* CandidateListResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD764E3E2D450D35008E94E5 /* CandidateListResponse.swift */; };
+		BD764E412D451D05008E94E5 /* CandidateService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD764E402D451D05008E94E5 /* CandidateService.swift */; };
+		BD764E432D451F49008E94E5 /* VoteAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD764E422D451F49008E94E5 /* VoteAPI.swift */; };
+		BD764E462D452183008E94E5 /* CandidateListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD764E452D452183008E94E5 /* CandidateListView.swift */; };
+		BD764E482D452190008E94E5 /* CandidateListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD764E472D452190008E94E5 /* CandidateListViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -55,7 +61,7 @@
 		BD764DF52D426125008E94E5 /* MainCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCoordinator.swift; sourceTree = "<group>"; };
 		BD764DF72D426130008E94E5 /* ProfileCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCoordinator.swift; sourceTree = "<group>"; };
 		BD764DFA2D426140008E94E5 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
-		BD764DFD2D426154008E94E5 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
+		BD764DFD2D426154008E94E5 /* CandidateServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CandidateServiceProtocol.swift; sourceTree = "<group>"; };
 		BD764E012D426176008E94E5 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		BD764E032D42617D008E94E5 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		BD764E062D426189008E94E5 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
@@ -82,6 +88,12 @@
 		BD764E332D436C06008E94E5 /* UserSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSession.swift; sourceTree = "<group>"; };
 		BD764E362D44B229008E94E5 /* CountDownView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountDownView.swift; sourceTree = "<group>"; };
 		BD764E392D44B35A008E94E5 /* VotingInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VotingInfoView.swift; sourceTree = "<group>"; };
+		BD764E3C2D450CFF008E94E5 /* CandidateItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CandidateItem.swift; sourceTree = "<group>"; };
+		BD764E3E2D450D35008E94E5 /* CandidateListResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CandidateListResponse.swift; sourceTree = "<group>"; };
+		BD764E402D451D05008E94E5 /* CandidateService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CandidateService.swift; sourceTree = "<group>"; };
+		BD764E422D451F49008E94E5 /* VoteAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoteAPI.swift; sourceTree = "<group>"; };
+		BD764E452D452183008E94E5 /* CandidateListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CandidateListView.swift; sourceTree = "<group>"; };
+		BD764E472D452190008E94E5 /* CandidateListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CandidateListViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -151,6 +163,7 @@
 		BD764DF92D426134008E94E5 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				BD764E3B2D450CF3008E94E5 /* Candiate */,
 				BD764DFA2D426140008E94E5 /* User.swift */,
 			);
 			path = Models;
@@ -159,7 +172,9 @@
 		BD764DFC2D426144008E94E5 /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				BD764DFD2D426154008E94E5 /* NetworkService.swift */,
+				BD764DFD2D426154008E94E5 /* CandidateServiceProtocol.swift */,
+				BD764E402D451D05008E94E5 /* CandidateService.swift */,
+				BD764E422D451F49008E94E5 /* VoteAPI.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -186,6 +201,7 @@
 		BD764E052D426182008E94E5 /* Main */ = {
 			isa = PBXGroup;
 			children = (
+				BD764E442D452173008E94E5 /* Candidate */,
 				BD764E382D44B346008E94E5 /* VotingInfo */,
 				BD764E352D44B20F008E94E5 /* CountDown */,
 				BD764E062D426189008E94E5 /* MainView.swift */,
@@ -256,6 +272,24 @@
 				BD764E392D44B35A008E94E5 /* VotingInfoView.swift */,
 			);
 			path = VotingInfo;
+			sourceTree = "<group>";
+		};
+		BD764E3B2D450CF3008E94E5 /* Candiate */ = {
+			isa = PBXGroup;
+			children = (
+				BD764E3C2D450CFF008E94E5 /* CandidateItem.swift */,
+				BD764E3E2D450D35008E94E5 /* CandidateListResponse.swift */,
+			);
+			path = Candiate;
+			sourceTree = "<group>";
+		};
+		BD764E442D452173008E94E5 /* Candidate */ = {
+			isa = PBXGroup;
+			children = (
+				BD764E452D452183008E94E5 /* CandidateListView.swift */,
+				BD764E472D452190008E94E5 /* CandidateListViewModel.swift */,
+			);
+			path = Candidate;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -344,19 +378,25 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BD764E482D452190008E94E5 /* CandidateListViewModel.swift in Sources */,
 				BD764E372D44B229008E94E5 /* CountDownView.swift in Sources */,
 				BD764DF22D42610D008E94E5 /* Coordinator.swift in Sources */,
 				BD764E072D426189008E94E5 /* MainView.swift in Sources */,
 				BD764DF82D426130008E94E5 /* ProfileCoordinator.swift in Sources */,
 				BD764E042D42617D008E94E5 /* LoginViewModel.swift in Sources */,
+				BD764E462D452183008E94E5 /* CandidateListView.swift in Sources */,
 				BD764DF62D426125008E94E5 /* MainCoordinator.swift in Sources */,
 				BD764E092D42618F008E94E5 /* MainViewModel.swift in Sources */,
 				BD764DE92D425A3A008E94E5 /* AngkorLifeVoteApp.swift in Sources */,
-				BD764DFE2D426154008E94E5 /* NetworkService.swift in Sources */,
+				BD764DFE2D426154008E94E5 /* CandidateServiceProtocol.swift in Sources */,
+				BD764E3D2D450CFF008E94E5 /* CandidateItem.swift in Sources */,
+				BD764E3F2D450D35008E94E5 /* CandidateListResponse.swift in Sources */,
 				BD764E3A2D44B35A008E94E5 /* VotingInfoView.swift in Sources */,
 				BD764DFB2D426140008E94E5 /* User.swift in Sources */,
 				BD764E0E2D4261B9008E94E5 /* ProfileViewModel.swift in Sources */,
 				BD764DF42D42611C008E94E5 /* LoginCoordinator.swift in Sources */,
+				BD764E412D451D05008E94E5 /* CandidateService.swift in Sources */,
+				BD764E432D451F49008E94E5 /* VoteAPI.swift in Sources */,
 				BD764DEA2D425A3A008E94E5 /* ContentView.swift in Sources */,
 				BD764E022D426176008E94E5 /* LoginView.swift in Sources */,
 				BD764E0C2D4261B3008E94E5 /* ProfileView.swift in Sources */,
