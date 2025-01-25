@@ -17,4 +17,7 @@ extension Color {
             opacity: opacity
         )
     }
+    
+    static let gray185 = rgb(red: 185, green: 185, blue: 185)
+    static let gray215 = rgb(red: 215, green: 215, blue: 215)
 }

@@ -13,21 +13,31 @@ struct MainView: View {
     
     var body: some View {
         NavigationView {
-            VStack {
-                Text("메인 화면")
-                    .font(.largeTitle)
-                
-                Text("로그인한 ID: \(userSession.userID)")
-                    .padding()
-                
-                Spacer()
+            GeometryReader { proxy in
+                ScrollView {
+                    VStack(spacing: 20) {
+                        // 상단 포스터 뷰
+                        WmuPosterView()
+                            .frame(height: 486)
+                        
+                        // 카운트다운 섹션
+                        CountDownView()
+                            .frame(width: proxy.size.width * 0.8, alignment: .center)
+                        
+                    }
+                }
+                .frame(maxHeight: .infinity)
+                .background(Color.black)
             }
-            .navigationTitle("메인")
         }
     }
 }
+
+
+
+
 #Preview {
     MainView(viewModel: MainViewModel())
         .environmentObject(UserSession())
-        
+    
 }

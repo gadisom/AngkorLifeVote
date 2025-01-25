@@ -40,6 +40,7 @@
 		BD764E302D432381008E94E5 /* Font+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD764E2F2D432381008E94E5 /* Font+Extension.swift */; };
 		BD764E322D435FC4008E94E5 /* Color+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD764E312D435FC4008E94E5 /* Color+Extension.swift */; };
 		BD764E342D436C06008E94E5 /* UserSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD764E332D436C06008E94E5 /* UserSession.swift */; };
+		BD764E372D44B229008E94E5 /* CountDownView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD764E362D44B229008E94E5 /* CountDownView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -78,6 +79,7 @@
 		BD764E2F2D432381008E94E5 /* Font+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Font+Extension.swift"; sourceTree = "<group>"; };
 		BD764E312D435FC4008E94E5 /* Color+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Extension.swift"; sourceTree = "<group>"; };
 		BD764E332D436C06008E94E5 /* UserSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSession.swift; sourceTree = "<group>"; };
+		BD764E362D44B229008E94E5 /* CountDownView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountDownView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -182,6 +184,7 @@
 		BD764E052D426182008E94E5 /* Main */ = {
 			isa = PBXGroup;
 			children = (
+				BD764E352D44B20F008E94E5 /* CountDown */,
 				BD764E062D426189008E94E5 /* MainView.swift */,
 				BD764E082D42618F008E94E5 /* MainViewModel.swift */,
 			);
@@ -234,6 +237,14 @@
 				BD764E312D435FC4008E94E5 /* Color+Extension.swift */,
 			);
 			path = Utils;
+			sourceTree = "<group>";
+		};
+		BD764E352D44B20F008E94E5 /* CountDown */ = {
+			isa = PBXGroup;
+			children = (
+				BD764E362D44B229008E94E5 /* CountDownView.swift */,
+			);
+			path = CountDown;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -322,6 +333,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BD764E372D44B229008E94E5 /* CountDownView.swift in Sources */,
 				BD764DF22D42610D008E94E5 /* Coordinator.swift in Sources */,
 				BD764E072D426189008E94E5 /* MainView.swift in Sources */,
 				BD764DF82D426130008E94E5 /* ProfileCoordinator.swift in Sources */,
