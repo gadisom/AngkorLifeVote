@@ -10,8 +10,17 @@ import Foundation
 enum VoteAPI {
     case vote(userID: String, candidateID: Int)
     case candidateDetail(id: Int)
-    case candidateList(page: Int, size: Int, sort: [String])
+    case candidateList(page: Int, size: Int, sort: [Sort])
     case votedCandidateList(userID: String)
+}
+
+enum Sort: String {
+    case voteCnt = "voteCnt"
+    case voteCntDesc = "voteCnt,DESC"
+    case name = "name"
+    case nameDesc = "name,DESC"
+    case candidateNumber = "candidateNumber"
+    case candidateNumberDesc = "candidateNumber,DESC"
 }
 
 // MARK: - URL 구성, HTTPMethod, Body, Query 등
@@ -54,7 +63,7 @@ extension VoteAPI {
                 URLQueryItem(name: "size", value: "\(size)")
             ]
             for s in sort {
-                items.append(URLQueryItem(name: "sort", value: s))
+                items.append(URLQueryItem(name: "sort", value: s.rawValue))
             }
             return items
             

@@ -32,6 +32,9 @@ struct MainView: View {
                         VotingInfoView()
                             .frame(width: proxy.size.width, height: 536)
                         
+                        CandidateGridView(candidateService: CandidateService())
+                            .frame(height: 500)
+                        
                     }
                 }
                 .frame(maxHeight: .infinity)

@@ -15,7 +15,7 @@ final class CandidateService: CandidateServiceProtocol {
         self.session = session
     }
     
-    func requestCandidateList(page: Int, size: Int, sort: [String]) async throws -> CandidateListResponse {
+    func requestCandidateList(page: Int, size: Int, sort: [Sort]) async throws -> CandidateListResponse {
         let apiCase = VoteAPI.candidateList(page: page, size: size, sort: sort)
         
         var components = URLComponents(url: apiCase.baseURL.appendingPathComponent(apiCase.path),

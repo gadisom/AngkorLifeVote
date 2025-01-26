@@ -7,8 +7,7 @@
 
 import Foundation
 
-/// [content] 배열 하나하나의 아이템
-struct CandidateItem: Codable, Identifiable {
+struct CandidateItem: Codable, Identifiable, Equatable {
     let id: Int
     let candidateNumber: Int
     let name: String
