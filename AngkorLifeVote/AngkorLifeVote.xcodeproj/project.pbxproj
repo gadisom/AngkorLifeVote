@@ -50,6 +50,7 @@
 		BD764E482D452190008E94E5 /* CandidateGridViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD764E472D452190008E94E5 /* CandidateGridViewModel.swift */; };
 		BD764E4A2D4527B9008E94E5 /* CandidateGridItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD764E492D4527B9008E94E5 /* CandidateGridItemView.swift */; };
 		BD764E4C2D452B07008E94E5 /* Array+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD764E4B2D452B07008E94E5 /* Array+Extension.swift */; };
+		BD764E4E2D4673E6008E94E5 /* CandidateDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD764E4D2D4673E6008E94E5 /* CandidateDetailView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -98,6 +99,7 @@
 		BD764E472D452190008E94E5 /* CandidateGridViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CandidateGridViewModel.swift; sourceTree = "<group>"; };
 		BD764E492D4527B9008E94E5 /* CandidateGridItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CandidateGridItemView.swift; sourceTree = "<group>"; };
 		BD764E4B2D452B07008E94E5 /* Array+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Extension.swift"; sourceTree = "<group>"; };
+		BD764E4D2D4673E6008E94E5 /* CandidateDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CandidateDetailView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -294,6 +296,7 @@
 				BD764E492D4527B9008E94E5 /* CandidateGridItemView.swift */,
 				BD764E452D452183008E94E5 /* CandidateGridView.swift */,
 				BD764E472D452190008E94E5 /* CandidateGridViewModel.swift */,
+				BD764E4D2D4673E6008E94E5 /* CandidateDetailView.swift */,
 			);
 			path = Candidate;
 			sourceTree = "<group>";
@@ -388,6 +391,7 @@
 				BD764E372D44B229008E94E5 /* CountDownView.swift in Sources */,
 				BD764DF22D42610D008E94E5 /* Coordinator.swift in Sources */,
 				BD764E072D426189008E94E5 /* MainView.swift in Sources */,
+				BD764E4E2D4673E6008E94E5 /* CandidateDetailView.swift in Sources */,
 				BD764DF82D426130008E94E5 /* ProfileCoordinator.swift in Sources */,
 				BD764E042D42617D008E94E5 /* LoginViewModel.swift in Sources */,
 				BD764E462D452183008E94E5 /* CandidateGridView.swift in Sources */,

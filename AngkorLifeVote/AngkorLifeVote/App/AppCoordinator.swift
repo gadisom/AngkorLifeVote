@@ -33,12 +33,13 @@ final class AppCoordinator: ObservableObject {
         childCoordinator = mainCoordinator
     }
     
-    // childCoordinator에 따라 적절한 View를 생성
-    func startView() -> AnyView {
-        if let coordinator = childCoordinator {
-            return coordinator.start()
-        } else {
-            return AnyView(Text("Loading..."))
+    func startView() -> some View {
+        NavigationView { // 최상위 NavigationView
+            if let coordinator = childCoordinator {
+                coordinator.start()
+            } else {
+                Text("Loading...")
+            }
         }
     }
 }

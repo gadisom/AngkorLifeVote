@@ -57,32 +57,31 @@ struct LoginView: View {
 
 struct WmuPosterView: View {
     var body: some View {
-        GeometryReader { proxy in
-            VStack(alignment: .center){
-                Text("WORLD MISS UNIVERSITY")
-                    .font(.kpMedium(.title))
-                    .foregroundColor(.white)
-                    .padding(.horizontal)
-                    .multilineTextAlignment(.center)
-                
-                Text("CAMBODIA 2024")
-                    .font(.kpLight(size: 25))
-                    .foregroundColor(.white)
-                    .padding()
-                
-                Image(.crown)
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: proxy.size.width * 0.6)
-                
-                Text("Cast your vote for the brightest candidate!\nWorld Miss University voting starts now!")
-                    .font(.kpExtraLight())
-                    .foregroundColor(.white)
-                    .multilineTextAlignment(.center)
-            }
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
-            .background(.black)
+        VStack(alignment: .center){
+            Text("WORLD MISS UNIVERSITY")
+                .font(.kpMedium(.title))
+                .foregroundColor(.white)
+                .padding(.horizontal)
+                .multilineTextAlignment(.center)
+            
+            Text("CAMBODIA 2024")
+                .font(.kpLight(size: 25))
+                .foregroundColor(.white)
+                .padding()
+            
+            Image(.crown)
+                .resizable()
+                .scaledToFit()
+                .padding(.horizontal, 70)
+            
+            Text("Cast your vote for the brightest candidate!\nWorld Miss University voting starts now!")
+                .font(.kpExtraLight())
+                .foregroundColor(.white)
+                .multilineTextAlignment(.center)
         }
+        //.frame(maxWidth: .infinity, maxHeight: .infinity)
+        .background(.black)
+        
     }
 }
 

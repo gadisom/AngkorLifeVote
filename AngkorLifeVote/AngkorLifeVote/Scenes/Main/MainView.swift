@@ -9,46 +9,61 @@ import SwiftUI
 
 struct MainView: View {
     @ObservedObject var viewModel: MainViewModel
-    @EnvironmentObject var userSession: UserSession
+    @EnvironmentObject var coordinator: MainCoordinator
+    @State private var isDetailActive: Bool = false
     
     var body: some View {
-        NavigationView {
-            GeometryReader { proxy in
-                ScrollView {
-                    VStack(spacing: 20) {
-                        // 상단 포스터 뷰
-                        WmuPosterView()
-                            .frame(height: 486)
-                        
-                        // 카운트다운 섹션
-                        CountDownView()
-                            .frame(width: proxy.size.width * 0.8, alignment: .center)
-                        
-                        Image(.earthBackground)
-                            .resizable()
-                            .scaledToFit()
-                            .frame(width: proxy.size.width)
-                        
-                        VotingInfoView()
-                            .frame(width: proxy.size.width, height: 536)
-                        
-                        CandidateGridView(candidateService: CandidateService())
-                            .frame(maxHeight: 1500)
-                        
-                    }
+        VStack {
+            ScrollView {
+                VStack(spacing: 20) {
+                    // 상단 포스터 뷰
+                    WmuPosterView()
+                    
+                    // 카운트다운 섹션
+                    CountDownView()
+                        .padding(.horizontal, 40)
+                    
+                    Image(.earthBackground)
+                        .resizable()
+                        .scaledToFit()
+                        .frame(maxWidth: .infinity)
+                    
+                    VotingInfoView()
+
+                    CandidateGridView(candidateService: CandidateService())
+                        .environmentObject(coordinator) // Coordinator 전달
+                        .padding(.bottom)
                 }
-                .frame(maxHeight: .infinity)
-                .background(Color.black)
+            }
+            
+            // 숨겨진 NavigationLink
+            NavigationLink(
+                destination: Group {
+                    if let candidate = coordinator.selectedCandidate {
+                        CandidateDetailView(candidate: candidate)
+                    } else {
+                        EmptyView()
+                    }
+                },
+                isActive: Binding(
+                    get: { coordinator.selectedCandidate != nil },
+                    set: { newValue in
+                        if !newValue {
+                            coordinator.selectedCandidate = nil
+                        }
+                    }
+                )
+            ) {
+                EmptyView()
             }
         }
+        .background(Color.black)
     }
 }
 
-
-
-
 #Preview {
+    let coordinator = MainCoordinator()
     MainView(viewModel: MainViewModel())
+        .environmentObject(coordinator)
         .environmentObject(UserSession())
-    
 }
