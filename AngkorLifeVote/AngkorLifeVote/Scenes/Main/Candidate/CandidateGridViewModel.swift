@@ -10,42 +10,42 @@ import Combine
 
 final class CandidateGridViewModel: ObservableObject {
     @Published var candidates: [CandidateItem] = []
-    @Published var pages: [[CandidateItem]] = []
-    @Published var currentPage: Int = 1 // 1부터 시작
-    @Published var totalPages: Int = 1 // 서버 응답으로 받아옴
     @Published var isLoading: Bool = false
     @Published var errorMessage: String?
-    @Published var sortType: Sort = .name
     
-    private let pageSize = 4
-    @Published var currentPageIndex: Int = 0 {
-        didSet {
-            // 사용자가 마지막 페이지로 이동하면 추가 로드
-            if currentPageIndex == pages.count - 1 && currentPage < totalPages {
-                fetchCandidates()
-            }
-        }
-    }
+    // 이미 투표한 후보자 ID들
+    @Published var votedIDs: Set<Int> = []
     
-    let candidateService: CandidateServiceProtocol  // 실제 네트워크 서비스
+    // 정렬이나 기타 설정이 필요하다면
+    @Published var sortType: SortType = .name
+    
+    private let candidateService: CandidateServiceProtocol
     
     init(candidateService: CandidateServiceProtocol) {
         self.candidateService = candidateService
     }
     
-    func fetchCandidates() {
-        guard !isLoading, currentPage <= totalPages else { return }
+    /// 모든 후보자 불러오기 (한 번에)
+    /// - userID: 이미 투표한 후보를 조회할 때 사용
+    func fetchAllCandidates(userID: String) {
+        guard !isLoading else { return }
         
         isLoading = true
+        errorMessage = nil
         
         Task {
             do {
+                // 1) 후보자 목록
                 let response = try await candidateService.requestCandidateList(
-                    page: currentPage,
-                    size: pageSize,
-                    sort: [sortType] // 예시
+                    page: 0,
+                    size: 9999,  // 충분히 큰 수로 모든 후보자 요청 (또는 서버 허용 범위)
+                    sort: [sortType]
                 )
                 
+                // 2) 이미 투표한 후보 목록
+                let votedList = try await candidateService.getVotedCandidateList(userID: userID)
+                
+                // 메인 스레드에서 UI 갱신
                 await MainActor.run {
                     let newItems = response.content.map {
                         CandidateItem(
@@ -56,10 +56,8 @@ final class CandidateGridViewModel: ObservableObject {
                             voteCnt: $0.voteCnt
                         )
                     }
-                    self.candidates += newItems
-                    self.pages.append(newItems)
-                    self.totalPages = response.totalPages
-                    self.currentPage += 1    // 다음 페이지
+                    self.candidates = newItems
+                    self.votedIDs = Set(votedList)
                     self.isLoading = false
                 }
             } catch {
@@ -71,9 +69,28 @@ final class CandidateGridViewModel: ObservableObject {
         }
     }
     
-    func vote(candidate: CandidateItem) {
-        // TODO: 실제 투표 POST 요청
-        // candidateService.vote(userID, candidate.id)
-        print("투표 요청: \(candidate.name)")
+    /// 투표하기
+    func vote(userID: String, candidateID: Int) {
+        guard !isLoading else { return }
+        
+        isLoading = true
+        errorMessage = nil
+        
+        Task {
+            do {
+                try await candidateService.vote(userID: userID, candidateID: candidateID)
+                
+                // 투표 성공 시 해당 후보 ID를 votedIDs에 추가
+                await MainActor.run {
+                    self.votedIDs.insert(candidateID)
+                    self.isLoading = false
+                }
+            } catch {
+                await MainActor.run {
+                    self.errorMessage = error.localizedDescription
+                    self.isLoading = false
+                }
+            }
+        }
     }
 }

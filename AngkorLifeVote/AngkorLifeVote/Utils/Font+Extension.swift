@@ -9,6 +9,7 @@ import SwiftUI
 
 extension Font {
     private static let kpFontBoldName = "KantumruyPro-Bold"
+    private static let kpFontSemiBoldName = "KantumruyPro-SemiBold"
     private static let kpFontMediumName = "KantumruyPro-Medium"
     private static let kpFontLightName = "KantumruyPro-Light"
     private static let kpFontExtraLightName = "KantumruyPro-ExtraLight"
@@ -24,6 +25,19 @@ extension Font {
             return .custom(kpFontBoldName, size: UIFont.preferredFont(forTextStyle: UIFont.TextStyle(style)).pointSize, relativeTo: style)
         } else {
             return .custom(kpFontBoldName, size: UIFont.preferredFont(forTextStyle: .body).pointSize)
+        }
+    }
+    
+    static func kpSemiBold(
+        _ style: TextStyle? = nil,
+        size: CGFloat? = nil
+    ) -> Font {
+        if let size = size {
+            return .custom(kpFontSemiBoldName, size: size, relativeTo: style ?? .body)
+        } else if let style = style {
+            return .custom(kpFontSemiBoldName, size: UIFont.preferredFont(forTextStyle: UIFont.TextStyle(style)).pointSize, relativeTo: style)
+        } else {
+            return .custom(kpFontSemiBoldName, size: UIFont.preferredFont(forTextStyle: .body).pointSize)
         }
     }
     

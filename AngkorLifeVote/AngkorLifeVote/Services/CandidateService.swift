@@ -8,35 +8,58 @@
 import Foundation
 
 final class CandidateService: CandidateServiceProtocol {
-    private let baseURL = "https://api-wmu-dev.angkorcoms.com"
     private let session: URLSession
     
     init(session: URLSession = .shared) {
         self.session = session
     }
     
-    func requestCandidateList(page: Int, size: Int, sort: [Sort]) async throws -> CandidateListResponse {
-        let apiCase = VoteAPI.candidateList(page: page, size: size, sort: sort)
-        
-        var components = URLComponents(url: apiCase.baseURL.appendingPathComponent(apiCase.path),
-                                       resolvingAgainstBaseURL: false)
-        components?.queryItems = apiCase.queryItems
+    private func makeRequest<T: Decodable>(_ api: VoteAPI) async throws -> T {
+        var components = URLComponents(url: api.baseURL.appendingPathComponent(api.path), resolvingAgainstBaseURL: false)
+        components?.queryItems = api.queryItems
         
         guard let url = components?.url else {
             throw URLError(.badURL)
         }
         
         var request = URLRequest(url: url)
-        request.httpMethod = apiCase.method
+        request.httpMethod = api.method
         
-        let (data, response) = try await URLSession.shared.data(for: request)
+        if let body = api.body {
+            request.httpBody = body
+            request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        }
+        
+        let (data, response) = try await session.data(for: request)
+        
+        // HTTP 응답 상태 코드 검증
         guard let httpResponse = response as? HTTPURLResponse,
               (200..<300).contains(httpResponse.statusCode) else {
             throw URLError(.badServerResponse)
         }
         
-        let decoded = try JSONDecoder().decode(CandidateListResponse.self, from: data)
-        return decoded
+        // 디코딩
+        return try JSONDecoder().decode(T.self, from: data)
+    }
+    
+    /// 투표 요청을 보내는 메서드
+    func vote(userID: String, candidateID: Int) async throws {
+        let api = VoteAPI.vote(userID: userID, candidateID: candidateID)
+        
+        struct EmptyResponse: Decodable {}
+        _ = try await makeRequest(api) as EmptyResponse
+    }
+    
+    /// 후보자 목록 요청을 보내는 메서드
+    func requestCandidateList(page: Int, size: Int, sort: [SortType]) async throws -> CandidateListResponse {
+        let api = VoteAPI.candidateList(page: page, size: size, sort: sort)
+        return try await makeRequest(api)
+    }
+    
+    func getVotedCandidateList (userID: String) async throws -> [Int] {
+        let api = VoteAPI.votedCandidateList(userID: userID)
+        return try await makeRequest(api)
     }
 
 }
+

@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct CandidateGridView: View {
+    @EnvironmentObject var userSession: UserSession
     @StateObject private var viewModel: CandidateGridViewModel
     
     init(candidateService: CandidateServiceProtocol) {
@@ -21,63 +22,71 @@ struct CandidateGridView: View {
     ]
     
     var body: some View {
-        if viewModel.candidates.isEmpty && viewModel.isLoading {
-            ProgressView("Loading...")
-                .padding()
-        } else {
-            VStack {
-                TabView(selection: $viewModel.currentPageIndex) {
-                    ForEach(viewModel.pages.indices, id: \.self) { index in
-                        ScrollView {
-                            LazyVGrid(columns: columns, spacing: 16) {
-                                ForEach(viewModel.pages[index]) { candidate in
-                                    CandidateGridItemView(candidate: candidate) { selected in
-                                        viewModel.vote(candidate: selected)
+        NavigationView {
+            GeometryReader { geomtry in
+                ZStack {
+                    if viewModel.isLoading {
+                        ProgressView("Loading...")
+                    }
+                    else if let error = viewModel.errorMessage {
+                        VStack {
+                            Text("Error: \(error)")
+                                .foregroundColor(.red)
+                            Button("Retry") {
+                                viewModel.fetchAllCandidates(userID: userSession.userID)
+                            }
+                            .padding()
+                        }
+                    }
+                    else {
+                        // 후보자 그리드
+                        LazyVStack {
+                            VStack(alignment: .leading) {
+                                Text("2024\nCadidate List")
+                                    .font(.kpSemiBold(.largeTitle))
+                                    .foregroundStyle(.white)
+                                    .padding(.vertical)
+                                
+                                Text("※ You can vote for up to 3 candidates")
+                                    .font(.kpRegular())
+                                    .foregroundStyle(Color.rgb(red: 174, green: 174, blue: 178))
+                            }
+                            
+                            LazyVGrid(columns: columns, spacing: 40) {
+                                ForEach(viewModel.candidates) { candidate in
+                                    CandidateGridItemView(
+                                        candidate: candidate,
+                                        isVoted: viewModel.votedIDs.contains(candidate.id)
+                                    ) { selectedID in
+                                        viewModel.vote(userID: userSession.userID, candidateID: selectedID)
                                     }
-                                    .onAppear {
-                                        if candidate == viewModel.pages[index].last {
-                                            viewModel.fetchCandidates()
-                                        }
-                                    }
+                                    .background(Color.red)
                                 }
                             }
                             .padding()
-                            
-                            // 에러 메시지 표시
-                            if let error = viewModel.errorMessage {
-                                Text("Error: \(error)")
-                                    .foregroundColor(.red)
-                            }
-                            
-                            // "Load More" 버튼 (선택 사항)
-                            if viewModel.currentPage <= viewModel.totalPages {
-                                Button("Load More") {
-                                    viewModel.fetchCandidates()
-                                }
-                                .padding()
-                            }
+                            Text("COPYRIGHT © WUPSC ALL RIGHT RESERVED.")
+                                .font(.kpRegular(.caption))
+                                .foregroundStyle(.gray)
+                                .frame(alignment: .center)
                         }
-                        .tag(index)
+                        .frame(maxHeight: .infinity)
                     }
                 }
-                .tabViewStyle(PageTabViewStyle())
-                .indexViewStyle(PageIndexViewStyle(backgroundDisplayMode: .always))
-                
-                // 페이지 번호 표시
-                Text("Page \(viewModel.currentPageIndex + 1) of \(viewModel.totalPages)")
-                    .padding(.top, 8)
+                .background(.black)
             }
-            .navigationTitle("Candidates")
-            .onAppear {
-                viewModel.fetchCandidates() // 첫 페이지 로드
-            }
-            .background(.black)
         }
-        
+        .onAppear {
+            // 첫 로딩
+            if viewModel.candidates.isEmpty {
+                viewModel.fetchAllCandidates(userID: userSession.userID)
+            }
+        }
     }
 }
 
 
+
 #Preview {
     CandidateGridView(candidateService: CandidateService())
+        .environmentObject(UserSession())
 }

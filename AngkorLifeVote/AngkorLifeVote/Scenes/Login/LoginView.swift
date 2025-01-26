@@ -91,3 +91,6 @@ struct WmuPosterView: View {
     LoginView(viewModel: LoginViewModel())
         .environmentObject(UserSession())
 }
+#Preview("w") {
+    WmuPosterView()
+}

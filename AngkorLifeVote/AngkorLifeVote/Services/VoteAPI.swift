@@ -7,20 +7,25 @@
 
 import Foundation
 
-enum VoteAPI {
-    case vote(userID: String, candidateID: Int)
-    case candidateDetail(id: Int)
-    case candidateList(page: Int, size: Int, sort: [Sort])
-    case votedCandidateList(userID: String)
-}
-
-enum Sort: String {
+enum SortType: String {
     case voteCnt = "voteCnt"
     case voteCntDesc = "voteCnt,DESC"
     case name = "name"
     case nameDesc = "name,DESC"
     case candidateNumber = "candidateNumber"
     case candidateNumberDesc = "candidateNumber,DESC"
+}
+
+struct APIError: Decodable, Error {
+    let errorCode: String
+    let errorMessage: String
+}
+
+enum VoteAPI {
+    case vote(userID: String, candidateID: Int)
+    case candidateDetail(id: Int)
+    case candidateList(page: Int, size: Int, sort: [SortType])
+    case votedCandidateList(userID: String)
 }
 
 // MARK: - URL 구성, HTTPMethod, Body, Query 등
