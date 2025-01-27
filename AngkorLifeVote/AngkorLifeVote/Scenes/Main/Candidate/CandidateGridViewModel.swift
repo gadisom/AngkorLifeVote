@@ -66,29 +66,4 @@ final class CandidateGridViewModel: ObservableObject {
             }
         }
     }
-    
-    /// 투표하기
-    func vote(userID: String, candidateID: Int) {
-        guard !isLoading else { return }
-        
-        isLoading = true
-        errorMessage = nil
-        
-        Task {
-            do {
-                try await candidateService.vote(userID: userID, candidateID: candidateID)
-                
-                // 투표 성공 시 해당 후보 ID를 votedIDs에 추가
-                await MainActor.run {
-                    self.votedIDs.insert(candidateID)
-                    self.isLoading = false
-                }
-            } catch {
-                await MainActor.run {
-                    self.errorMessage = error.localizedDescription
-                    self.isLoading = false
-                }
-            }
-        }
-    }
 }

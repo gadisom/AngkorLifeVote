@@ -30,14 +30,14 @@ struct MainView: View {
                     VotingInfoView()
                     
                     CandidateGridView(candidateService: CandidateService())
-                        .environmentObject(coordinator)
-                        .padding(.bottom)
+                  
+                    Spacer()
                 }
             }
             .background(Color.black)
             .background(
                 NavigationLink(
-                    destination: Group {
+                    destination: ZStack {
                         if let candidate = coordinator.selectedCandidate {
                             CandidateDetailView(viewModel: CandidateDetailViewModel(id: candidate.id, userID: userSession.userID ,candidateService: CandidateService()))
                                 .environmentObject(coordinator)

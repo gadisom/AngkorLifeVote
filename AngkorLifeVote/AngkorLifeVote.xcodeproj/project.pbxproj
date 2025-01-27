@@ -54,6 +54,7 @@
 		BD764E502D4748C9008E94E5 /* CandidateDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD764E4F2D4748C9008E94E5 /* CandidateDetail.swift */; };
 		BD764E522D474907008E94E5 /* CandidateDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD764E512D474907008E94E5 /* CandidateDetailViewModel.swift */; };
 		BD764E542D474A00008E94E5 /* CandidateDetailResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD764E532D474A00008E94E5 /* CandidateDetailResponse.swift */; };
+		BD764E562D4778B9008E94E5 /* ToastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD764E552D4778B9008E94E5 /* ToastView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -106,6 +107,7 @@
 		BD764E4F2D4748C9008E94E5 /* CandidateDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CandidateDetail.swift; sourceTree = "<group>"; };
 		BD764E512D474907008E94E5 /* CandidateDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CandidateDetailViewModel.swift; sourceTree = "<group>"; };
 		BD764E532D474A00008E94E5 /* CandidateDetailResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CandidateDetailResponse.swift; sourceTree = "<group>"; };
+		BD764E552D4778B9008E94E5 /* ToastView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -197,6 +199,7 @@
 				BD764E002D42616E008E94E5 /* Login */,
 				BD764E052D426182008E94E5 /* Main */,
 				BD764E0A2D4261A0008E94E5 /* Profile */,
+				BD764E552D4778B9008E94E5 /* ToastView.swift */,
 			);
 			path = Scenes;
 			sourceTree = "<group>";
@@ -424,6 +427,7 @@
 				BD764E502D4748C9008E94E5 /* CandidateDetail.swift in Sources */,
 				BD764E0C2D4261B3008E94E5 /* ProfileView.swift in Sources */,
 				BD764E522D474907008E94E5 /* CandidateDetailViewModel.swift in Sources */,
+				BD764E562D4778B9008E94E5 /* ToastView.swift in Sources */,
 				BD764E322D435FC4008E94E5 /* Color+Extension.swift in Sources */,
 				BD764E342D436C06008E94E5 /* UserSession.swift in Sources */,
 				BD764E302D432381008E94E5 /* Font+Extension.swift in Sources */,

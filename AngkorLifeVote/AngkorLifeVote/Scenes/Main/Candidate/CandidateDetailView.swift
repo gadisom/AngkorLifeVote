@@ -14,87 +14,114 @@ struct CandidateDetailView: View {
 
     var body: some View {
         GeometryReader { proxy in
-            VStack {
-                if viewModel.isLoading {
-                    ProgressView("Loading...")
-                } else if let error = viewModel.errorMessage {
-                    VStack {
-                        Text("Error: \(error)")
-                            .foregroundColor(.red)
-                        Button("Retry") {
-                            viewModel.fetchDetail()
-                        }
-                        .padding()
-                    }
-                } else if let detail = viewModel.candidateDetail {
-                    ScrollView {
-                        VStack(alignment: .leading ,spacing: 20) {
-                            let infoList = viewModel.images
-                            if infoList.isEmpty {
-                                Color.gray
+            ZStack {
+                VStack {
+                    if let detail = viewModel.candidateDetail {
+                        ScrollView {
+                            VStack(alignment: .leading, spacing: 20) {
+                                let infoList = viewModel.images
+                                if infoList.isEmpty {
+                                    Color.gray
+                                        .frame(width: proxy.size.width, height: proxy.size.width)
+                                } else {
+                                    TabView(selection: $viewModel.currentIndex) {
+                                        ForEach(Array(infoList.enumerated()), id: \.offset) { (index, info) in
+                                            AsyncImage(url: URL(string: info.profileUrl)) { image in
+                                                image
+                                                    .resizable()
+                                                    .scaledToFit()
+                                            } placeholder: {
+                                                Color.gray
+                                            }
+                                            .tag(index)
+                                        }
+                                    }
                                     .frame(width: proxy.size.width, height: proxy.size.width)
-                            } else {
-                                TabView(selection: $viewModel.currentIndex) {
-                                    ForEach(Array(infoList.enumerated()), id: \.offset) { (index, info) in
-                                        AsyncImage(url: URL(string: info.profileUrl)) { image in
-                                            image
+                                    .tabViewStyle(PageTabViewStyle(indexDisplayMode: .always))
+                                }
+                                
+                                // MARK: - 이름 / 번호
+                                VStack(alignment: .leading, spacing: 4) {
+                                    Text(detail.name)
+                                        .font(.kpSemiBold(.largeTitle))
+                                        .foregroundStyle(.white)
+                                    Text("Entry No.\(detail.candidateNumber)")
+                                        .font(.kpMedium(.headline))
+                                        .foregroundColor(.rgb(red: 111, green: 118, blue: 255))
+                                }
+                                .padding()
+                                
+                                // MARK: - 정보 카드
+                                infoCard(detail: detail)
+                                    .padding(.horizontal)
+                                
+                                Text("COPYRIGHT © WUPSC ALL RIGHT RESERVED.")
+                                    .font(.kpRegular(.caption))
+                                    .foregroundStyle(.gray)
+                                    .frame(maxWidth: .infinity, alignment: .center)
+                                
+                                Button(action: {
+                                    viewModel.vote() // 매개변수 제거
+                                }) {
+                                    HStack(spacing: 4) {
+                                        if detail.voted {
+                                            Image(.voted)
                                                 .resizable()
                                                 .scaledToFit()
-                                        } placeholder: {
-                                            Color.gray
+                                                .frame(width: 16, height: 16)
                                         }
-                                        .tag(index)
+                                        Text(detail.voted ? "Voted" : "Vote")
+                                            .font(.kpBold(.title3))
                                     }
+                                    .foregroundColor(detail.voted ? .accent : .white)
+                                    .frame(maxWidth: .infinity, minHeight: 48)
+                                    .background(detail.voted ? .white : .accent)
+                                    .clipShape(RoundedRectangle(cornerRadius: 999))
                                 }
-                                .frame(width: proxy.size.width, height: proxy.size.width)
-                                .tabViewStyle(PageTabViewStyle(indexDisplayMode: .always))
+                                .disabled(detail.voted)
+                                .padding()
                             }
-                            
-                            // MARK: - 이름 / 번호
-                            VStack(alignment: .leading, spacing: 4) {
-                                Text(detail.name)
-                                    .font(.kpSemiBold(.largeTitle))
-                                    .foregroundStyle(.white)
-                                Text("Entry No.\(detail.candidateNumber)")
-                                    .font(.kpMedium(.headline))
-                                    .foregroundColor(.rgb(red: 111, green: 118, blue: 255))
+                        }
+                        .background(Color.black)
+                    } else if let error = viewModel.errorMessage {
+                        VStack {
+                            Text("Error: \(error)")
+                                .foregroundColor(.red)
+                            Button("Retry") {
+                                viewModel.fetchDetail()
                             }
-                            .padding()
-                            
-                            // MARK: - 정보 카드
-                            infoCard(detail: detail)
-                                .padding(.horizontal)
-                            
-                            Text("COPYRIGHT © WUPSC ALL RIGHT RESERVED.")
-                                .font(.kpRegular(.caption))
-                                .foregroundStyle(.gray)
-                                .frame(maxWidth: .infinity, alignment: .center)
-                            
-                            Button(action: {
-                                viewModel.vote(userID: userSession.userID)
-                            }) {
-                                HStack(spacing: 4) {
-                                    if detail.voted {
-                                        Image(.voted)
-                                            .resizable()
-                                            .scaledToFit()
-                                            .frame(width: 16, height: 16)
-                                    }
-                                    Text(detail.voted ? "Voted" : "Vote")
-                                        .font(.kpBold(.title3))
-                                }
-                                .foregroundColor(detail.voted ? .accent : .white)
-                                .frame(maxWidth: .infinity, minHeight: 48)
-                                .background(detail.voted ? .white : .accent)
-                                .clipShape(RoundedRectangle(cornerRadius: 999))
-                            }
-                            .disabled(detail.voted)
                             .padding()
                         }
+                    } else {
+                        Text("No data")
                     }
-                    .background(Color.black)
-                } else {
-                    Text("No data")
+                }
+                // Custom Alert Overlay
+                if viewModel.showAlert {
+                    Color.black.opacity(0.5)
+                        .edgesIgnoringSafeArea(.all)
+                        .onTapGesture {
+                            withAnimation {
+                                viewModel.showAlert = false
+                            }
+                        }
+                    
+                    CustomAlertView(
+                        title: viewModel.alertMessage == "Thank you for voting" ? "Voting Completed" : "알림",
+                        message: viewModel.alertMessage ?? "Thank you for voting.",
+                        confirmAction: {
+                            withAnimation {
+                                viewModel.showAlert = false // Alert 닫기
+                                viewModel.fetchDetail()
+                            }
+                        }
+                    )
+                    .frame(width: proxy.size.width * 0.8, height: 200)
+                    .background(Color.white)
+                    .cornerRadius(12)
+                    .shadow(radius: 10)
+                    .transition(.scale)
+                    .zIndex(1) // 다른 뷰들 위에 표시되도록 설정
                 }
             }
         }
@@ -144,7 +171,7 @@ struct CandidateDetailView: View {
     CandidateDetailView(
         viewModel: CandidateDetailViewModel(
             id: 48,
-            userID: "useA",
+            userID: "use3d3r2A",
             candidateService: CandidateService()
         )
     )

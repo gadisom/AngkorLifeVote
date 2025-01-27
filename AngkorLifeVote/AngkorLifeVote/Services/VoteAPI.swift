@@ -22,7 +22,7 @@ struct APIError: Decodable, Error {
 }
 
 enum VoteAPI {
-    case vote(userID: String, candidateID: Int)
+    case vote(userID: String, candidateID: String)
     case candidateDetail(id: Int, userID: String)
     case candidateList(page: Int, size: Int, sort: [SortType])
     case votedCandidateList(userID: String)
@@ -87,7 +87,7 @@ extension VoteAPI {
         switch self {
         case .vote(let userID, let candidateID):
             // { "userId": "kimdd", "id": 48 }
-            let dict: [String: Any] = [
+            let dict: [String: String] = [
                 "userId": userID,
                 "id": candidateID
             ]

@@ -12,7 +12,8 @@ final class CandidateDetailViewModel: ObservableObject {
     @Published var candidateDetail: CandidateDetailResponse?
     @Published var isLoading: Bool = false
     @Published var errorMessage: String?
-    
+    @Published var showAlert: Bool = false
+    @Published var alertMessage: String? // Alert 메시지 추가
     // 자동 슬라이드용
     @Published var currentIndex: Int = 0  // TabView index
     private var timerTask: Task<Void, Never>?
@@ -21,7 +22,7 @@ final class CandidateDetailViewModel: ObservableObject {
     private let id: Int
     private let candidateService: CandidateServiceProtocol
     
-    init(id: Int, userID: String ,candidateService: CandidateServiceProtocol) {
+    init(id: Int, userID: String, candidateService: CandidateServiceProtocol) {
         self.id = id
         self.userID = userID
         self.candidateService = candidateService
@@ -41,7 +42,6 @@ final class CandidateDetailViewModel: ObservableObject {
                 await MainActor.run {
                     self.candidateDetail = detail
                     self.isLoading = false
-                    // 자동 슬라이드 시작 (데이터가 성공적으로 로드된 후)
                     self.startAutoSlide()
                 }
             } catch {
@@ -71,7 +71,6 @@ final class CandidateDetailViewModel: ObservableObject {
             while !Task.isCancelled {
                 try? await Task.sleep(nanoseconds: 3_000_000_000)
                 await MainActor.run {
-                    // currentIndex 순환
                     withAnimation(.easeInOut(duration: 0.5)) {
                         currentIndex = (currentIndex + 1) % count
                     }
@@ -86,23 +85,24 @@ final class CandidateDetailViewModel: ObservableObject {
         timerTask = nil
     }
     
-    func vote(userID: String) {
-        guard let detail = candidateDetail else { return }
-        
+    func vote() {
+        // 중복 요청 방지
+        guard !isLoading else { return }
         isLoading = true
         errorMessage = nil
         
         Task {
-            do {
-                try await candidateService.vote(userID: userID, candidateID: detail.id)
-                await MainActor.run {
-                    self.isLoading = false
+            // candidateID를 String으로 변환해서 전달
+            let success = await candidateService.vote(userID: userID,
+                                                      candidateID: String(id))
+            await MainActor.run {
+                self.isLoading = false
+                if success {
+                    self.alertMessage = "Thank you for voting"
+                } else {
+                    self.alertMessage = "You have already voted or failed."
                 }
-            } catch {
-                await MainActor.run {
-                    self.errorMessage = error.localizedDescription
-                    self.isLoading = false
-                }
+                self.showAlert = true
             }
         }
     }

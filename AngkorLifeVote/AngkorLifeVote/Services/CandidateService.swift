@@ -43,11 +43,46 @@ final class CandidateService: CandidateServiceProtocol {
     }
     
     /// 투표 요청을 보내는 메서드
-    func vote(userID: String, candidateID: Int) async throws {
-        let api = VoteAPI.vote(userID: userID, candidateID: candidateID)
+    func vote(userID: String, candidateID: String) async -> Bool {
+        // 1) URL 생성
+        guard let url = URL(string: "https://api-wmu-dev.angkorcoms.com/vote") else {
+            return false
+        }
         
-        struct EmptyResponse: Decodable {}
-        _ = try await makeRequest(api) as EmptyResponse
+        // 2) URLRequest
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        // 헤더 설정
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.setValue("application/json", forHTTPHeaderField: "Accept")
+        
+        // 3) 요청 바디
+        let bodyDict: [String: String] = [
+            "userId": userID,
+            "id": candidateID
+        ]
+        request.httpBody = try? JSONSerialization.data(withJSONObject: bodyDict, options: [])
+        
+        do {
+            let (data, response) = try await session.data(for: request)
+            
+            guard let httpResponse = response as? HTTPURLResponse else {
+                return false
+            }
+            
+            if httpResponse.statusCode == 200 {
+                if let errorObj = try? JSONDecoder().decode(APIError.self, from: data),
+                   errorObj.errorCode == "2003" {
+                    // 이미 투표한 경우
+                    return false
+                }
+                return true
+            } else {
+                return false
+            }
+        } catch {
+            return false
+        }
     }
     
     /// 후보자 목록 요청을 보내는 메서드
