@@ -9,7 +9,7 @@ import SwiftUI
 
 struct CandidateDetailView: View {
     @ObservedObject var viewModel: CandidateDetailViewModel
-    
+    @EnvironmentObject var coordinator: AppCoordinator
     var body: some View {
         GeometryReader { proxy in
             VStack {
@@ -27,9 +27,28 @@ struct CandidateDetailView: View {
                 } else if let detail = viewModel.candidateDetail {
                     ScrollView {
                         VStack(alignment: .leading ,spacing: 20) {
-                            profileImagePager(detail.profileInfoList)
+                            let infoList = viewModel.images
+                            if infoList.isEmpty {
+                                Color.gray
+                                    .frame(width: proxy.size.width, height: proxy.size.width)
+                            } else {
+                                TabView(selection: $viewModel.currentIndex) {
+                                    ForEach(Array(infoList.enumerated()), id: \.offset) { (index, info) in
+                                        AsyncImage(url: URL(string: info.profileUrl)) { image in
+                                            image
+                                                .resizable()
+                                                .scaledToFit()
+                                        } placeholder: {
+                                            Color.gray
+                                        }
+                                        .tag(index)
+                                    }
+                                }
                                 .frame(width: proxy.size.width, height: proxy.size.width)
-                        
+                                .tabViewStyle(PageTabViewStyle(indexDisplayMode: .always))
+                            }
+                            
+                            // MARK: - 이름 / 번호
                             VStack(alignment: .leading, spacing: 4) {
                                 Text(detail.name)
                                     .font(.kpSemiBold(.largeTitle))
@@ -40,6 +59,7 @@ struct CandidateDetailView: View {
                             }
                             .padding()
                             
+                            // MARK: - 정보 카드
                             infoCard(detail: detail)
                                 .padding(.horizontal)
                             
@@ -49,16 +69,26 @@ struct CandidateDetailView: View {
                                 .frame(maxWidth: .infinity, alignment: .center)
                             
                             Button(action: {
-                                
+                                // 투표 로직 등
                             }) {
-                                Text("Vote")
                                 
+                                HStack(spacing: 4) {
+                                    if detail.voted {
+                                        Image(.voted)
+                                            .resizable()
+                                            .scaledToFit()
+                                            .frame(width: 16, height: 16)
+                                    }
+                                    Text(detail.voted ? "Voted" : "Vote")
+                                        .font(.kpBold(.title3))
+                                }
+                                .foregroundColor(detail.voted ? .accent : .white)
+                                .frame(maxWidth: .infinity, minHeight: 48)
+                                .background(detail.voted ? .white : .accent)
+                                .clipShape(RoundedRectangle(cornerRadius: 999))
+
                             }
-                            .frame(maxWidth: .infinity)
                             .padding()
-                            .background(.accent)
-                            .foregroundColor(.white)
-                            .cornerRadius(999)
                         }
                     }
                     .background(Color.black)
@@ -68,29 +98,15 @@ struct CandidateDetailView: View {
             }
         }
         .navigationTitle("2024 WMU")
-    }
-    
-    // MARK: - 이미지 Pager
-    private func profileImagePager(_ infoList: [ProfileInfo]) -> some View {
-        if infoList.isEmpty {
-            return AnyView(Color.gray.frame(height: 300))
-        }
-        
-        return AnyView(
-            TabView {
-                ForEach(infoList, id: \.profileUrl) { info in
-                    AsyncImage(url: URL(string: info.profileUrl)) { image in
-                        image
-                            .resizable()
-                            .scaledToFit()
-                    } placeholder: {
-                        Color.gray
-                    }
+        .toolbar {
+            ToolbarItem(placement: .navigationBarTrailing) {
+                Button(action: {
+                    coordinator.logout()
+                }) {
+                    Image(systemName: "xmark")
                 }
             }
-            .tabViewStyle(PageTabViewStyle(indexDisplayMode: .always))
-            
-        )
+        }
     }
     
     // MARK: - 정보 카드
@@ -100,7 +116,7 @@ struct CandidateDetailView: View {
             Divider()
             rowItem(title: "Major", value: detail.major)
             Divider()
-            rowItem(title: "Hobby", value: detail.hobby)
+            rowItem(title: "Hobbies", value: detail.hobby)
             Divider()
             rowItem(title: "Talent", value: detail.talent)
             Divider()
@@ -123,7 +139,13 @@ struct CandidateDetailView: View {
     }
 }
 
-
 #Preview {
-    CandidateDetailView(viewModel: CandidateDetailViewModel(id: 48, userID: "", candidateService: CandidateService()))
+    CandidateDetailView(
+        viewModel: CandidateDetailViewModel(
+            id: 48,
+            userID: "userA",
+            candidateService: CandidateService()
+        )
+    )
+    .environmentObject(AppCoordinator())
 }
