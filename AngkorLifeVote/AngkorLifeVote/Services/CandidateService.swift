@@ -42,8 +42,7 @@ final class CandidateService: CandidateServiceProtocol {
         return try JSONDecoder().decode(T.self, from: data)
     }
     
-    /// 투표 요청을 보내는 메서드
-    func vote(userID: String, candidateID: String) async -> Bool {
+    func vote(userID: String, candidateID: Int) async -> Bool {
         // 1) URL 생성
         guard let url = URL(string: "https://api-wmu-dev.angkorcoms.com/vote") else {
             return false
@@ -57,7 +56,7 @@ final class CandidateService: CandidateServiceProtocol {
         request.setValue("application/json", forHTTPHeaderField: "Accept")
         
         // 3) 요청 바디
-        let bodyDict: [String: String] = [
+        let bodyDict: [String: Any] = [
             "userId": userID,
             "id": candidateID
         ]
@@ -85,7 +84,6 @@ final class CandidateService: CandidateServiceProtocol {
         }
     }
     
-    /// 후보자 목록 요청을 보내는 메서드
     func requestCandidateList(page: Int, size: Int, sort: [SortType]) async throws -> CandidateListResponse {
         let api = VoteAPI.candidateList(page: page, size: size, sort: sort)
         return try await makeRequest(api)

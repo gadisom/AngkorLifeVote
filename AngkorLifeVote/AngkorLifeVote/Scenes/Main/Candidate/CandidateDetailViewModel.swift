@@ -13,9 +13,8 @@ final class CandidateDetailViewModel: ObservableObject {
     @Published var isLoading: Bool = false
     @Published var errorMessage: String?
     @Published var showAlert: Bool = false
-    @Published var alertMessage: String? // Alert 메시지 추가
-    // 자동 슬라이드용
-    @Published var currentIndex: Int = 0  // TabView index
+    @Published var alertMessage: String?
+    @Published var currentIndex: Int = 0
     private var timerTask: Task<Void, Never>?
     
     private let userID: String
@@ -64,9 +63,8 @@ final class CandidateDetailViewModel: ObservableObject {
         timerTask?.cancel()
         
         let count = images.count
-        guard count > 1 else { return } // 이미지가 1장이면 자동 슬라이드 불필요
+        guard count > 1 else { return }
         
-        // 새 Task 생성
         timerTask = Task {
             while !Task.isCancelled {
                 try? await Task.sleep(nanoseconds: 3_000_000_000)
@@ -86,15 +84,13 @@ final class CandidateDetailViewModel: ObservableObject {
     }
     
     func vote() {
-        // 중복 요청 방지
         guard !isLoading else { return }
         isLoading = true
         errorMessage = nil
         
         Task {
-            // candidateID를 String으로 변환해서 전달
             let success = await candidateService.vote(userID: userID,
-                                                      candidateID: String(id))
+                                                      candidateID: id)
             await MainActor.run {
                 self.isLoading = false
                 if success {

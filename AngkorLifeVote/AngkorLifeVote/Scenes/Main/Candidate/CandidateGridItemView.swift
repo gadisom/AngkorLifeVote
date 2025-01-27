@@ -13,7 +13,6 @@ struct CandidateGridItemView: View {
     
     var body: some View {
         VStack(spacing: 8) {
-            // 프로필 사진
             GeometryReader { geometry in
                 AsyncImage(url: URL(string: candidate.profileUrl)) { image in
                     image
@@ -23,11 +22,11 @@ struct CandidateGridItemView: View {
                 } placeholder: {
                     ProgressView()
                         .foregroundStyle(.white)
-                        .frame(width: geometry.size.width, height: geometry.size.width) // 사진과 동일한 크기 유지
+                        .frame(width: geometry.size.width, height: geometry.size.width)
                         .clipShape(RoundedRectangle(cornerRadius: 8))
                 }
             }
-            .aspectRatio(1, contentMode: .fit) // 정사각형 유지
+            .aspectRatio(1, contentMode: .fit) 
 
             Text(candidate.name)
                 .font(.kpMedium(.headline))

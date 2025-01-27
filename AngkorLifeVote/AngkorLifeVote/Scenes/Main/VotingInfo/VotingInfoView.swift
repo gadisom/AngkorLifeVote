@@ -10,7 +10,6 @@ import SwiftUI
 struct VotingInfoView: View {
     var body: some View {
         VStack(alignment: .leading) {
-            // 상단 타이틀 영역
             VStack(alignment: .leading, spacing: 8) {
                 Text("WORLD MISS UNIVERSITY")
                     .foregroundColor(.rgb(red: 111, green: 118, blue: 255))
@@ -31,7 +30,6 @@ struct VotingInfoView: View {
                 .lineSpacing(5)
             }
             
-            // 정보 카드 영역
             VStack(alignment: .leading, spacing: 8) {
                 HStack {
                     Text("Period")

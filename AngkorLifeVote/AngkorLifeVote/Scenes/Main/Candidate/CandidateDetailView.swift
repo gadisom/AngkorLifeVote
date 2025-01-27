@@ -78,7 +78,7 @@ struct CandidateDetailView: View {
                                     .background(detail.voted ? .white : .accent)
                                     .clipShape(RoundedRectangle(cornerRadius: 999))
                                 }
-                                .disabled(detail.voted)
+                               // .disabled(detail.voted)
                                 .padding()
                             }
                         }
@@ -107,7 +107,7 @@ struct CandidateDetailView: View {
                         }
                     
                     CustomAlertView(
-                        title: viewModel.alertMessage == "Thank you for voting" ? "Voting Completed" : "알림",
+                        title: viewModel.alertMessage == "Thank you for voting" ? "Voting Completed" : "Voting Failed",
                         message: viewModel.alertMessage ?? "Thank you for voting.",
                         confirmAction: {
                             withAnimation {
@@ -116,7 +116,7 @@ struct CandidateDetailView: View {
                             }
                         }
                     )
-                    .frame(width: proxy.size.width * 0.8, height: 200)
+                    .frame(width: proxy.size.width * 0.8)
                     .background(Color.white)
                     .cornerRadius(12)
                     .shadow(radius: 10)
@@ -170,8 +170,8 @@ struct CandidateDetailView: View {
 #Preview {
     CandidateDetailView(
         viewModel: CandidateDetailViewModel(
-            id: 48,
-            userID: "use3d3r2A",
+            id: 58,
+            userID: "used3dax3rsd2A",
             candidateService: CandidateService()
         )
     )

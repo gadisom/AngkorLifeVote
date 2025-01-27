@@ -24,7 +24,6 @@ final class CandidateGridViewModel: ObservableObject {
     }
     
     /// 모든 후보자 불러오기 (한 번에)
-    /// - userID: 이미 투표한 후보를 조회할 때 사용
     func fetchAllCandidates(userID: String) {
         guard !isLoading else { return }
         
@@ -33,17 +32,14 @@ final class CandidateGridViewModel: ObservableObject {
         
         Task {
             do {
-                // 1) 후보자 목록
                 let response = try await candidateService.requestCandidateList(
                     page: 0,
-                    size: 9999,  // 충분히 큰 수로 모든 후보자 요청 (또는 서버 허용 범위)
+                    size: 99,
                     sort: [sortType]
                 )
                 
-                // 2) 이미 투표한 후보 목록
                 let votedList = try await candidateService.getVotedCandidateList(userID: userID)
                 
-                // 메인 스레드에서 UI 갱신
                 await MainActor.run {
                     let newItems = response.content.map {
                         CandidateItem(
