@@ -10,7 +10,8 @@ import SwiftUI
 struct MainView: View {
     @ObservedObject var viewModel: MainViewModel
     @EnvironmentObject var coordinator: MainCoordinator
-    
+    @EnvironmentObject var userSession: UserSession
+
     var body: some View {
         NavigationView {
             ScrollView {
@@ -38,7 +39,7 @@ struct MainView: View {
                 NavigationLink(
                     destination: Group {
                         if let candidate = coordinator.selectedCandidate {
-                            CandidateDetailView(candidate: candidate)
+                            CandidateDetailView(viewModel: CandidateDetailViewModel(id: candidate.id, userID: userSession.userID ,candidateService: CandidateService()))
                                 .environmentObject(coordinator)
                         } else {
                             EmptyView()

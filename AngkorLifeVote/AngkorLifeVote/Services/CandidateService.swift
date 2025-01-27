@@ -61,5 +61,9 @@ final class CandidateService: CandidateServiceProtocol {
         return try await makeRequest(api)
     }
 
+    func requestCandidateDetail(id: Int, userID: String) async throws -> CandidateDetailResponse {
+        let api = VoteAPI.candidateDetail(id: id, userID: userID)
+        return try await makeRequest(api)
+    }
 }
 

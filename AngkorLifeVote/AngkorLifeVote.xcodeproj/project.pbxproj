@@ -51,6 +51,9 @@
 		BD764E4A2D4527B9008E94E5 /* CandidateGridItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD764E492D4527B9008E94E5 /* CandidateGridItemView.swift */; };
 		BD764E4C2D452B07008E94E5 /* Array+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD764E4B2D452B07008E94E5 /* Array+Extension.swift */; };
 		BD764E4E2D4673E6008E94E5 /* CandidateDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD764E4D2D4673E6008E94E5 /* CandidateDetailView.swift */; };
+		BD764E502D4748C9008E94E5 /* CandidateDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD764E4F2D4748C9008E94E5 /* CandidateDetail.swift */; };
+		BD764E522D474907008E94E5 /* CandidateDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD764E512D474907008E94E5 /* CandidateDetailViewModel.swift */; };
+		BD764E542D474A00008E94E5 /* CandidateDetailResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD764E532D474A00008E94E5 /* CandidateDetailResponse.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -100,6 +103,9 @@
 		BD764E492D4527B9008E94E5 /* CandidateGridItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CandidateGridItemView.swift; sourceTree = "<group>"; };
 		BD764E4B2D452B07008E94E5 /* Array+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Extension.swift"; sourceTree = "<group>"; };
 		BD764E4D2D4673E6008E94E5 /* CandidateDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CandidateDetailView.swift; sourceTree = "<group>"; };
+		BD764E4F2D4748C9008E94E5 /* CandidateDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CandidateDetail.swift; sourceTree = "<group>"; };
+		BD764E512D474907008E94E5 /* CandidateDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CandidateDetailViewModel.swift; sourceTree = "<group>"; };
+		BD764E532D474A00008E94E5 /* CandidateDetailResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CandidateDetailResponse.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -286,6 +292,8 @@
 			children = (
 				BD764E3C2D450CFF008E94E5 /* CandidateItem.swift */,
 				BD764E3E2D450D35008E94E5 /* CandidateListResponse.swift */,
+				BD764E4F2D4748C9008E94E5 /* CandidateDetail.swift */,
+				BD764E532D474A00008E94E5 /* CandidateDetailResponse.swift */,
 			);
 			path = Candiate;
 			sourceTree = "<group>";
@@ -297,6 +305,7 @@
 				BD764E452D452183008E94E5 /* CandidateGridView.swift */,
 				BD764E472D452190008E94E5 /* CandidateGridViewModel.swift */,
 				BD764E4D2D4673E6008E94E5 /* CandidateDetailView.swift */,
+				BD764E512D474907008E94E5 /* CandidateDetailViewModel.swift */,
 			);
 			path = Candidate;
 			sourceTree = "<group>";
@@ -410,8 +419,11 @@
 				BD764E412D451D05008E94E5 /* CandidateService.swift in Sources */,
 				BD764E432D451F49008E94E5 /* VoteAPI.swift in Sources */,
 				BD764DEA2D425A3A008E94E5 /* ContentView.swift in Sources */,
+				BD764E542D474A00008E94E5 /* CandidateDetailResponse.swift in Sources */,
 				BD764E022D426176008E94E5 /* LoginView.swift in Sources */,
+				BD764E502D4748C9008E94E5 /* CandidateDetail.swift in Sources */,
 				BD764E0C2D4261B3008E94E5 /* ProfileView.swift in Sources */,
+				BD764E522D474907008E94E5 /* CandidateDetailViewModel.swift in Sources */,
 				BD764E322D435FC4008E94E5 /* Color+Extension.swift in Sources */,
 				BD764E342D436C06008E94E5 /* UserSession.swift in Sources */,
 				BD764E302D432381008E94E5 /* Font+Extension.swift in Sources */,

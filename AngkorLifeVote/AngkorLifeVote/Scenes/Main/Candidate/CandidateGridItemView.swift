@@ -32,22 +32,18 @@ struct CandidateGridItemView: View {
             }
             .aspectRatio(1, contentMode: .fit) // 정사각형 유지
 
-            // 이름
             Text(candidate.name)
                 .font(.kpMedium(.headline))
                 .foregroundColor(.white)
                 .padding(.top)
 
-            // voteCnt
             Text("\(candidate.voteCnt) Voted")
                 .font(.kpRegular())
                 .foregroundColor(.rgb(red: 111, green: 118, blue: 255))
 
-            // 투표 버튼
             Button(action: {
                 onVote(candidate.id)
             }) {
-                
                 Text(isVoted ? "Voted" : "Vote")
                     .font(.kpBold(size: 16))
                     .foregroundColor(isVoted ? .accent : .white)

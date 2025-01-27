@@ -23,7 +23,7 @@ struct APIError: Decodable, Error {
 
 enum VoteAPI {
     case vote(userID: String, candidateID: Int)
-    case candidateDetail(id: Int)
+    case candidateDetail(id: Int, userID: String)
     case candidateList(page: Int, size: Int, sort: [SortType])
     case votedCandidateList(userID: String)
 }
@@ -41,7 +41,7 @@ extension VoteAPI {
         switch self {
         case .vote:
             return "/vote"
-        case .candidateDetail(let id):
+        case .candidateDetail(let id, _):
             return "/vote/candidate/\(id)"
         case .candidateList:
             return "/vote/candidate/list"
@@ -61,6 +61,9 @@ extension VoteAPI {
     
     var queryItems: [URLQueryItem]? {
         switch self {
+        case .candidateDetail(_, let userID):
+            return [URLQueryItem(name: "userId", value: userID)]
+            
         case .candidateList(let page, let size, let sort):
             // 예: /vote/candidate/list?page=0&size=9&sort=voteCnt,DESC...
             var items: [URLQueryItem] = [
