@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct MainView: View {
-    @ObservedObject var viewModel: MainViewModel
     @EnvironmentObject var coordinator: MainCoordinator
     @EnvironmentObject var userSession: UserSession
 
@@ -74,7 +73,7 @@ struct MainView: View {
 
 #Preview {
     let coordinator = MainCoordinator(appCoordinator: AppCoordinator())
-    MainView(viewModel: MainViewModel())
+    MainView()
         .environmentObject(coordinator)
         .environmentObject(UserSession())
 }

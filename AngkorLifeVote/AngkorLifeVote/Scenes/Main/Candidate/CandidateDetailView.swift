@@ -61,7 +61,7 @@ struct CandidateDetailView: View {
                                     .frame(maxWidth: .infinity, alignment: .center)
                                 
                                 Button(action: {
-                                    viewModel.vote() // 매개변수 제거
+                                    viewModel.vote()
                                 }) {
                                     HStack(spacing: 4) {
                                         if detail.voted {
@@ -78,7 +78,7 @@ struct CandidateDetailView: View {
                                     .background(detail.voted ? .white : .accent)
                                     .clipShape(RoundedRectangle(cornerRadius: 999))
                                 }
-                               // .disabled(detail.voted)
+                                .disabled(detail.voted)
                                 .padding()
                             }
                         }
@@ -96,7 +96,6 @@ struct CandidateDetailView: View {
                         Text("No data")
                     }
                 }
-                // Custom Alert Overlay
                 if viewModel.showAlert {
                     Color.black.opacity(0.5)
                         .edgesIgnoringSafeArea(.all)
