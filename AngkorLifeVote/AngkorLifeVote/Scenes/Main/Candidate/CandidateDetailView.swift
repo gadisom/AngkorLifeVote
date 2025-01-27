@@ -10,6 +10,8 @@ import SwiftUI
 struct CandidateDetailView: View {
     @ObservedObject var viewModel: CandidateDetailViewModel
     @EnvironmentObject var coordinator: AppCoordinator
+    @EnvironmentObject var userSession: UserSession
+
     var body: some View {
         GeometryReader { proxy in
             VStack {
@@ -69,9 +71,8 @@ struct CandidateDetailView: View {
                                 .frame(maxWidth: .infinity, alignment: .center)
                             
                             Button(action: {
-                                // 투표 로직 등
+                                viewModel.vote(userID: userSession.userID)
                             }) {
-                                
                                 HStack(spacing: 4) {
                                     if detail.voted {
                                         Image(.voted)
@@ -86,8 +87,8 @@ struct CandidateDetailView: View {
                                 .frame(maxWidth: .infinity, minHeight: 48)
                                 .background(detail.voted ? .white : .accent)
                                 .clipShape(RoundedRectangle(cornerRadius: 999))
-
                             }
+                            .disabled(detail.voted)
                             .padding()
                         }
                     }
@@ -143,9 +144,10 @@ struct CandidateDetailView: View {
     CandidateDetailView(
         viewModel: CandidateDetailViewModel(
             id: 48,
-            userID: "userA",
+            userID: "useA",
             candidateService: CandidateService()
         )
     )
     .environmentObject(AppCoordinator())
+    .environmentObject(UserSession())
 }

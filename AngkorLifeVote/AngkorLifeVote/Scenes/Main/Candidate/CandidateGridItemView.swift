@@ -7,8 +7,6 @@
 
 import SwiftUI
 
-import SwiftUI
-
 struct CandidateGridItemView: View {
     let candidate: CandidateItem
     let isVoted: Bool
@@ -60,4 +58,5 @@ struct CandidateGridItemView: View {
 #Preview {
     CandidateGridItemView(candidate: CandidateItem(id: 1, candidateNumber: 1, name: "GANA", profileUrl: "https://angkorchat-bucket.s3.ap-southeast-1.amazonaws.com/candidate/52/15668ef9d80e4bc9b05a27defbc6723f.png", voteCnt: "33"), isVoted: true, onVote: { num in
     })
+    .environmentObject(MainCoordinator(appCoordinator: AppCoordinator()))
 }

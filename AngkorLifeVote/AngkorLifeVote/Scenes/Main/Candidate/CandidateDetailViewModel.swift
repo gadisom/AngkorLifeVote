@@ -85,4 +85,25 @@ final class CandidateDetailViewModel: ObservableObject {
         timerTask?.cancel()
         timerTask = nil
     }
+    
+    func vote(userID: String) {
+        guard let detail = candidateDetail else { return }
+        
+        isLoading = true
+        errorMessage = nil
+        
+        Task {
+            do {
+                try await candidateService.vote(userID: userID, candidateID: detail.id)
+                await MainActor.run {
+                    self.isLoading = false
+                }
+            } catch {
+                await MainActor.run {
+                    self.errorMessage = error.localizedDescription
+                    self.isLoading = false
+                }
+            }
+        }
+    }
 }

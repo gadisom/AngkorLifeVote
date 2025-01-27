@@ -15,8 +15,6 @@ final class CandidateGridViewModel: ObservableObject {
     
     // 이미 투표한 후보자 ID들
     @Published var votedIDs: Set<Int> = []
-    
-    // 정렬이나 기타 설정이 필요하다면
     @Published var sortType: SortType = .name
     
     private let candidateService: CandidateServiceProtocol
