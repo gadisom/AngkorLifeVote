@@ -11,46 +11,60 @@ struct CandidateDetailView: View {
     @ObservedObject var viewModel: CandidateDetailViewModel
     
     var body: some View {
-        Group {
-            if viewModel.isLoading {
-                ProgressView("Loading...")
-            } else if let error = viewModel.errorMessage {
-                VStack {
-                    Text("Error: \(error)")
-                        .foregroundColor(.red)
-                    Button("Retry") {
-                        viewModel.fetchDetail()
-                    }
-                    .padding()
-                }
-            } else if let detail = viewModel.candidateDetail {
-                ScrollView {
-                    VStack(spacing: 20) {
-                        profileImagePager(detail.profileInfoList)
-                        
-                        VStack(alignment: .leading, spacing: 4) {
-                            Text(detail.name)
-                                .font(.title)
-                            Text("Entry No.\(detail.candidateNumber)")
-                                .foregroundColor(.blue)
+        GeometryReader { proxy in
+            VStack {
+                if viewModel.isLoading {
+                    ProgressView("Loading...")
+                } else if let error = viewModel.errorMessage {
+                    VStack {
+                        Text("Error: \(error)")
+                            .foregroundColor(.red)
+                        Button("Retry") {
+                            viewModel.fetchDetail()
                         }
-                        
-                        infoCard(detail: detail)
-                        
-                        Button("Vote") {
-                            
-                        }
-                        .font(.headline)
                         .padding()
-                        .background(Color.blue)
-                        .foregroundColor(.white)
-                        .cornerRadius(16)
                     }
-                    .padding()
+                } else if let detail = viewModel.candidateDetail {
+                    ScrollView {
+                        VStack(alignment: .leading ,spacing: 20) {
+                            profileImagePager(detail.profileInfoList)
+                                .frame(width: proxy.size.width, height: proxy.size.width)
+                        
+                            VStack(alignment: .leading, spacing: 4) {
+                                Text(detail.name)
+                                    .font(.kpSemiBold(.largeTitle))
+                                    .foregroundStyle(.white)
+                                Text("Entry No.\(detail.candidateNumber)")
+                                    .font(.kpMedium(.headline))
+                                    .foregroundColor(.rgb(red: 111, green: 118, blue: 255))
+                            }
+                            .padding()
+                            
+                            infoCard(detail: detail)
+                                .padding(.horizontal)
+                            
+                            Text("COPYRIGHT © WUPSC ALL RIGHT RESERVED.")
+                                .font(.kpRegular(.caption))
+                                .foregroundStyle(.gray)
+                                .frame(maxWidth: .infinity, alignment: .center)
+                            
+                            Button(action: {
+                                
+                            }) {
+                                Text("Vote")
+                                
+                            }
+                            .frame(maxWidth: .infinity)
+                            .padding()
+                            .background(.accent)
+                            .foregroundColor(.white)
+                            .cornerRadius(999)
+                        }
+                    }
+                    .background(Color.black)
+                } else {
+                    Text("No data")
                 }
-                .background(Color.black)
-            } else {
-                Text("No data")
             }
         }
         .navigationTitle("2024 WMU")
@@ -66,40 +80,44 @@ struct CandidateDetailView: View {
             TabView {
                 ForEach(infoList, id: \.profileUrl) { info in
                     AsyncImage(url: URL(string: info.profileUrl)) { image in
-                        image.resizable().scaledToFill()
+                        image
+                            .resizable()
+                            .scaledToFit()
                     } placeholder: {
                         Color.gray
                     }
-                    .frame(height: 300)
-                    .clipped()
                 }
             }
             .tabViewStyle(PageTabViewStyle(indexDisplayMode: .always))
-            .frame(height: 300)
+            
         )
     }
     
     // MARK: - 정보 카드
     private func infoCard(detail: CandidateDetailResponse) -> some View {
-        VStack(alignment: .leading, spacing: 8) {
+        VStack(alignment: .leading, spacing: 12) {
             rowItem(title: "Education", value: detail.education)
+            Divider()
             rowItem(title: "Major", value: detail.major)
+            Divider()
             rowItem(title: "Hobby", value: detail.hobby)
+            Divider()
             rowItem(title: "Talent", value: detail.talent)
+            Divider()
             rowItem(title: "Ambition", value: detail.ambition)
         }
         .padding()
-        .background(Color.white.opacity(0.06))
-        .cornerRadius(12)
+        .background(Color.rgb(red: 37, green: 37, blue: 37))
+        .clipShape(RoundedRectangle(cornerRadius: 6))
     }
     
     private func rowItem(title: String, value: String) -> some View {
-        VStack(alignment: .leading, spacing: 2) {
+        VStack(alignment: .leading, spacing: 5) {
             Text(title)
-                .font(.subheadline)
+                .font(.kpMedium(.subheadline))
                 .foregroundColor(.gray)
             Text(value)
-                .font(.body)
+                .font(.kpRegular())
                 .foregroundColor(.white)
         }
     }
