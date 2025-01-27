@@ -33,6 +33,7 @@ struct CandidateGridView: View {
                     .font(.kpRegular())
                     .foregroundStyle(Color.rgb(red: 174, green: 174, blue: 178))
             }
+            .padding(.horizontal)
             
             LazyVGrid(columns: columns, spacing: 40) {
                 ForEach(viewModel.candidates) { candidate in
@@ -42,9 +43,8 @@ struct CandidateGridView: View {
                     ) { selectedID in
                         viewModel.vote(userID: userSession.userID, candidateID: selectedID)
                     }
-                    .background(Color.red)
                     .onTapGesture {
-                        coordinator.navigateToDetail(candidate: candidate) // 상세 페이지로 이동
+                        coordinator.selectedCandidate = candidate
                     }
                 }
             }
@@ -67,5 +67,5 @@ struct CandidateGridView: View {
 #Preview {
     CandidateGridView(candidateService: CandidateService())
         .environmentObject(UserSession())
-        .environmentObject(MainCoordinator())
+        .environmentObject(MainCoordinator(appCoordinator: AppCoordinator()))
 }

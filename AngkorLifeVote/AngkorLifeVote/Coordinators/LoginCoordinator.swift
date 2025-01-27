@@ -12,12 +12,9 @@ final class LoginCoordinator: Coordinator {
     
     func start() -> AnyView {
         let viewModel = LoginViewModel()
-        
-        // ViewModel에서 로그인 완료 시 -> Coordinator 콜백
         viewModel.onLoginSuccess = { [weak self] in
             self?.onLoginSuccess?()
         }
-        
         let view = LoginView(viewModel: viewModel)
         return AnyView(view)
     }

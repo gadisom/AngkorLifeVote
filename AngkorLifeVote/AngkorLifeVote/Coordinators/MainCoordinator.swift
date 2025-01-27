@@ -8,17 +8,27 @@
 import SwiftUI
 
 final class MainCoordinator: Coordinator, ObservableObject {
+    weak var appCoordinator: AppCoordinator?
+    
     @Published var selectedCandidate: CandidateItem?
-    
+    init(appCoordinator: AppCoordinator?) {
+        self.appCoordinator = appCoordinator
+    }
     func start() -> AnyView {
-        let viewModel = MainViewModel()
-        let view = MainView(viewModel: viewModel)
-            .environmentObject(self) // Coordinator를 환경 객체로 전달
-        return AnyView(view)
+        let mainView = MainView(viewModel: MainViewModel())
+            .environmentObject(self)
+        
+        return AnyView(
+            NavigationView {
+                mainView
+            }
+        )
     }
     
-    // 상세 페이지로 이동하는 함수
-    func navigateToDetail(candidate: CandidateItem) {
-        selectedCandidate = candidate
+    /// 로그아웃 처리
+    func logout() {
+        appCoordinator?.logout()
     }
+
 }
+

@@ -19,27 +19,26 @@ final class AppCoordinator: ObservableObject {
     
     func showLoginFlow() {
         let loginCoordinator = LoginCoordinator()
-        
-        // 로그인 성공 콜백 설정
         loginCoordinator.onLoginSuccess = { [weak self] in
             self?.showMainFlow()
         }
-        
         childCoordinator = loginCoordinator
     }
     
     func showMainFlow() {
-        let mainCoordinator = MainCoordinator()
+        let mainCoordinator = MainCoordinator(appCoordinator: self)
         childCoordinator = mainCoordinator
     }
     
+    func logout() {
+        showLoginFlow()
+    }
+    
     func startView() -> some View {
-        NavigationView { // 최상위 NavigationView
-            if let coordinator = childCoordinator {
-                coordinator.start()
-            } else {
-                Text("Loading...")
-            }
+        if let coordinator = childCoordinator {
+            return coordinator.start()
+        } else {
+            return AnyView(Text("Loading..."))
         }
     }
 }

@@ -10,59 +10,69 @@ import SwiftUI
 struct MainView: View {
     @ObservedObject var viewModel: MainViewModel
     @EnvironmentObject var coordinator: MainCoordinator
-    @State private var isDetailActive: Bool = false
     
     var body: some View {
-        VStack {
+        NavigationView {
             ScrollView {
                 VStack(spacing: 20) {
-                    // 상단 포스터 뷰
+                
                     WmuPosterView()
-                    
-                    // 카운트다운 섹션
+                
                     CountDownView()
                         .padding(.horizontal, 40)
-                    
+                
                     Image(.earthBackground)
                         .resizable()
                         .scaledToFit()
                         .frame(maxWidth: .infinity)
                     
                     VotingInfoView()
-
+                    
                     CandidateGridView(candidateService: CandidateService())
-                        .environmentObject(coordinator) // Coordinator 전달
+                        .environmentObject(coordinator)
                         .padding(.bottom)
                 }
             }
-            
-            // 숨겨진 NavigationLink
-            NavigationLink(
-                destination: Group {
-                    if let candidate = coordinator.selectedCandidate {
-                        CandidateDetailView(candidate: candidate)
-                    } else {
-                        EmptyView()
-                    }
-                },
-                isActive: Binding(
-                    get: { coordinator.selectedCandidate != nil },
-                    set: { newValue in
-                        if !newValue {
-                            coordinator.selectedCandidate = nil
+            .background(Color.black)
+            .background(
+                NavigationLink(
+                    destination: Group {
+                        if let candidate = coordinator.selectedCandidate {
+                            CandidateDetailView(candidate: candidate)
+                                .environmentObject(coordinator)
+                        } else {
+                            EmptyView()
                         }
+                    },
+                    isActive: Binding<Bool>(
+                        get: { coordinator.selectedCandidate != nil },
+                        set: { newValue in
+                            if !newValue {
+                                coordinator.selectedCandidate = nil
+                            }
+                        }
+                    )
+                ) {
+                    EmptyView()
+                }
+            )
+            .navigationBarTitle("2024 WMU", displayMode: .inline)
+            .toolbar {
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button(action: {
+                        coordinator.logout()
+                    }) {
+                        Image(systemName: "xmark")
                     }
-                )
-            ) {
-                EmptyView()
+                }
             }
         }
-        .background(Color.black)
     }
 }
 
+
 #Preview {
-    let coordinator = MainCoordinator()
+    let coordinator = MainCoordinator(appCoordinator: AppCoordinator())
     MainView(viewModel: MainViewModel())
         .environmentObject(coordinator)
         .environmentObject(UserSession())
