@@ -40,9 +40,7 @@ struct CandidateGridView: View {
                     CandidateGridItemView(
                         candidate: candidate,
                         isVoted: viewModel.votedIDs.contains(candidate.id)
-                    ) { selectedID in
-                        viewModel.vote(userID: userSession.userID, candidateID: selectedID)
-                    }
+                    )
                     .onTapGesture {
                         coordinator.selectedCandidate = candidate
                     }

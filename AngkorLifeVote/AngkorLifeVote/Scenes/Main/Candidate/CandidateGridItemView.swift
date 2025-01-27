@@ -10,7 +10,6 @@ import SwiftUI
 struct CandidateGridItemView: View {
     let candidate: CandidateItem
     let isVoted: Bool
-    let onVote: (Int) -> Void
     
     var body: some View {
         VStack(spacing: 8) {
@@ -40,7 +39,6 @@ struct CandidateGridItemView: View {
                 .foregroundColor(.rgb(red: 111, green: 118, blue: 255))
 
             Button(action: {
-                onVote(candidate.id)
             }) {
                 Text(isVoted ? "Voted" : "Vote")
                     .font(.kpBold(size: 16))
@@ -48,15 +46,14 @@ struct CandidateGridItemView: View {
                     .frame(maxWidth: .infinity, maxHeight: 34)
                     .background(isVoted ? .white : .accent)
                     .clipShape(RoundedRectangle(cornerRadius: 999))
-                
             }
-            .frame(maxWidth: .infinity) 
+            .disabled(true)
+            .frame(maxWidth: .infinity)
         }
     }
 }
 
 #Preview {
-    CandidateGridItemView(candidate: CandidateItem(id: 1, candidateNumber: 1, name: "GANA", profileUrl: "https://angkorchat-bucket.s3.ap-southeast-1.amazonaws.com/candidate/52/15668ef9d80e4bc9b05a27defbc6723f.png", voteCnt: "33"), isVoted: true, onVote: { num in
-    })
+    CandidateGridItemView(candidate: CandidateItem(id: 1, candidateNumber: 1, name: "GANA", profileUrl: "https://angkorchat-bucket.s3.ap-southeast-1.amazonaws.com/candidate/52/15668ef9d80e4bc9b05a27defbc6723f.png", voteCnt: "33"), isVoted: true)
     .environmentObject(MainCoordinator(appCoordinator: AppCoordinator()))
 }
