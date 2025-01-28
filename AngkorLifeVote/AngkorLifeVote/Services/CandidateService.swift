@@ -7,6 +7,8 @@
 
 import Foundation
 
+struct EmptyResponse: Decodable {}
+
 final class CandidateService: CandidateServiceProtocol {
     private let session: URLSession
     
@@ -15,7 +17,8 @@ final class CandidateService: CandidateServiceProtocol {
     }
     
     private func makeRequest<T: Decodable>(_ api: VoteAPI) async throws -> T {
-        var components = URLComponents(url: api.baseURL.appendingPathComponent(api.path), resolvingAgainstBaseURL: false)
+        var components = URLComponents(url: api.baseURL.appendingPathComponent(api.path),
+                                       resolvingAgainstBaseURL: false)
         components?.queryItems = api.queryItems
         
         guard let url = components?.url else {
@@ -29,62 +32,46 @@ final class CandidateService: CandidateServiceProtocol {
             request.httpBody = body
             request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         }
+        request.setValue("application/json", forHTTPHeaderField: "Accept")
         
         let (data, response) = try await session.data(for: request)
-        
-        // HTTP 응답 상태 코드 검증
+
         guard let httpResponse = response as? HTTPURLResponse,
               (200..<300).contains(httpResponse.statusCode) else {
             throw URLError(.badServerResponse)
         }
-        
-        // 디코딩
+
+        if data.isEmpty {
+            if T.self == EmptyResponse.self {
+                return EmptyResponse() as! T
+            } else {
+                throw URLError(.cannotParseResponse)
+            }
+        }
+
+        if let apiError = try? JSONDecoder().decode(APIError.self, from: data) {
+            throw apiError
+        }
+
         return try JSONDecoder().decode(T.self, from: data)
     }
     
     func vote(userID: String, candidateID: Int) async -> Bool {
-        // 1) URL 생성
-        guard let url = URL(string: "https://api-wmu-dev.angkorcoms.com/vote") else {
-            return false
-        }
-        
-        // 2) URLRequest
-        var request = URLRequest(url: url)
-        request.httpMethod = "POST"
-        // 헤더 설정
-        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        request.setValue("application/json", forHTTPHeaderField: "Accept")
-        
-        // 3) 요청 바디
-        let bodyDict: [String: Any] = [
-            "userId": userID,
-            "id": candidateID
-        ]
-        request.httpBody = try? JSONSerialization.data(withJSONObject: bodyDict, options: [])
-        
+        let api = VoteAPI.vote(userID: userID, candidateID: "\(candidateID)")
         do {
-            let (data, response) = try await session.data(for: request)
-            
-            guard let httpResponse = response as? HTTPURLResponse else {
+            let _: EmptyResponse = try await makeRequest(api)
+            return true
+        } catch let error as APIError {
+            if error.errorCode == "2003" {
                 return false
             }
-            
-            if httpResponse.statusCode == 200 {
-                if let errorObj = try? JSONDecoder().decode(APIError.self, from: data),
-                   errorObj.errorCode == "2003" {
-                    // 이미 투표한 경우
-                    return false
-                }
-                return true
-            } else {
-                return false
-            }
+            return false
         } catch {
             return false
         }
     }
     
-    func requestCandidateList(page: Int, size: Int, sort: [SortType]) async throws -> CandidateListResponse {
+    func requestCandidateList(page: Int, size: Int, sort: SortType) async throws -> CandidateListResponse {
         let api = VoteAPI.candidateList(page: page, size: size, sort: sort)
         return try await makeRequest(api)
     }

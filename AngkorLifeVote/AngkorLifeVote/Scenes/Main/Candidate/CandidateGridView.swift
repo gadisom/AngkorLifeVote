@@ -32,10 +32,22 @@ struct CandidateGridView: View {
                     .font(.kpSemiBold(.largeTitle))
                     .foregroundStyle(.white)
                     .padding(.bottom)
-                
-                Text("※ You can vote for up to 3 candidates")
-                    .font(.kpRegular())
-                    .foregroundStyle(Color.AKgray2)
+                HStack {
+                    Text("※ You can vote for up to 3 candidates")
+                        .font(.kpRegular())
+                        .foregroundStyle(Color.AKgray2)
+                    Spacer()
+                    Picker("정렬", selection: $viewModel.sortType) {
+                        ForEach([SortType.name, SortType.voteCntDesc, SortType.candidateNumber], id: \.self) { type in
+                            Text(type.sortValue)
+                                .tag(type)
+                        }
+                    }
+                    .clipShape(RoundedRectangle(cornerRadius: 8))
+                    .background(Color.AKdbdbdb)
+                    .pickerStyle(MenuPickerStyle()) // 선택적으로 스타일 변경
+                    .clipShape(RoundedRectangle(cornerRadius: 30))
+                }
             }
             .padding(.horizontal)
             
@@ -49,6 +61,7 @@ struct CandidateGridView: View {
                         coordinator.selectedCandidate = candidate
                     }
                 }
+                
             }
             .padding()
             
@@ -80,6 +93,9 @@ struct CandidateGridView: View {
                 EmptyView()
             }
         )
+        .refreshable {
+            viewModel.fetchAllCandidates(userID: userSession.userID)
+        }
         .onAppear {
             if viewModel.candidates.isEmpty {
                 viewModel.fetchAllCandidates(userID: userSession.userID)
@@ -90,6 +106,9 @@ struct CandidateGridView: View {
                  viewModel.fetchAllCandidates(userID: userSession.userID)
                  isVoted = false
             }
+        }
+        .onReceive(viewModel.$sortType) { _ in
+            viewModel.fetchAllCandidates(userID: userSession.userID)
         }
     }
 }

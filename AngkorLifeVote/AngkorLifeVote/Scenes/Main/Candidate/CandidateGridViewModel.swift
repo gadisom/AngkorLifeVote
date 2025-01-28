@@ -35,7 +35,7 @@ final class CandidateGridViewModel: ObservableObject {
                 let response = try await candidateService.requestCandidateList(
                     page: 0,
                     size: 99,
-                    sort: [sortType]
+                    sort: sortType
                 )
                 
                 let votedList = try await candidateService.getVotedCandidateList(userID: userID)

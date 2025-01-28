@@ -15,6 +15,7 @@ struct MainView: View {
         ScrollView {
             
             WmuPosterView()
+                .padding(.vertical)
             
             CountDownView()
                 .padding(.horizontal, 40)
@@ -36,7 +37,6 @@ struct MainView: View {
                     coordinator.logout()
                 }) {
                     Image(systemName: "xmark")
-                        .foregroundStyle(.black)
                 }
             }
         }

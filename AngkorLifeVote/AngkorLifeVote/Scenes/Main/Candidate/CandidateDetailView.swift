@@ -26,7 +26,13 @@ struct CandidateDetailView: View {
                                 } else {
                                     TabView(selection: $viewModel.currentIndex) {
                                         ForEach(Array(infoList.enumerated()), id: \.offset) { (index, info) in
-                                            CacheImage(url: info.profileUrl)
+                                            AsyncImage(url: URL(string: info.profileUrl)) { image in
+                                                image
+                                                    .resizable()
+                                                    .scaledToFit()
+                                            } placeholder: {
+                                                Color.gray
+                                            }
                                             .tag(index)
                                         }
                                     }
@@ -120,7 +126,7 @@ struct CandidateDetailView: View {
                 }
             }
         }
-        .navigationBarTitleDisplayMode(.inline)
+        .navigationTitle("2024 WMU")
         .toolbar {
             ToolbarItem(placement: .navigationBarTrailing) {
                 Button(action: {

@@ -7,13 +7,24 @@
 
 import Foundation
 
-enum SortType: String {
+enum SortType: String, CaseIterable {
     case voteCnt = "voteCnt"
     case voteCntDesc = "voteCnt,DESC"
     case name = "name"
     case nameDesc = "name,DESC"
     case candidateNumber = "candidateNumber"
     case candidateNumberDesc = "candidateNumber,DESC"
+    
+    var sortValue: String {
+        switch self {
+        case .voteCnt: return "투표 낮은 순"
+        case .voteCntDesc: return "Vote"
+        case .name: return "Name"
+        case .nameDesc: return "이름 내림차순"
+        case .candidateNumber: return "CandidateNumber"
+        case .candidateNumberDesc: return "투표번호 높은 순"
+        }
+    }
 }
 
 struct APIError: Decodable, Error {
@@ -24,7 +35,7 @@ struct APIError: Decodable, Error {
 enum VoteAPI {
     case vote(userID: String, candidateID: String)
     case candidateDetail(id: Int, userID: String)
-    case candidateList(page: Int, size: Int, sort: [SortType])
+    case candidateList(page: Int, size: Int, sort: SortType)
     case votedCandidateList(userID: String)
 }
 
@@ -66,13 +77,11 @@ extension VoteAPI {
             
         case .candidateList(let page, let size, let sort):
             // 예: /vote/candidate/list?page=0&size=9&sort=voteCnt,DESC...
-            var items: [URLQueryItem] = [
+            let items: [URLQueryItem] = [
                 URLQueryItem(name: "page", value: "\(page)"),
-                URLQueryItem(name: "size", value: "\(size)")
+                URLQueryItem(name: "size", value: "\(size)"),
+                URLQueryItem(name: "sort", value: "\(sort.rawValue)")
             ]
-            for s in sort {
-                items.append(URLQueryItem(name: "sort", value: s.rawValue))
-            }
             return items
             
         case .votedCandidateList(let userID):

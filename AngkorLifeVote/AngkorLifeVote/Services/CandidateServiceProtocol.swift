@@ -8,7 +8,7 @@
 import Foundation
 protocol CandidateServiceProtocol {
     func vote(userID: String, candidateID: Int) async -> Bool
-    func requestCandidateList(page: Int, size: Int, sort: [SortType]) async throws -> CandidateListResponse
+    func requestCandidateList(page: Int, size: Int, sort: SortType) async throws -> CandidateListResponse
     func getVotedCandidateList (userID: String) async throws -> [Int]
     func requestCandidateDetail(id: Int, userID: String) async throws -> CandidateDetailResponse
 }

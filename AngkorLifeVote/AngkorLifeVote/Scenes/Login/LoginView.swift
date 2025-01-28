@@ -44,7 +44,13 @@ struct LoginView: View {
                             .background(Color.AK4232d5)
                             .clipShape(RoundedRectangle(cornerRadius: 999))
                     }
+                    .disabled(viewModel.userID.isEmpty)
                     .padding(.horizontal)
+                    
+                    Text(viewModel.userID.isEmpty ? "Please enter your ID at least 1 character" : "")
+                        .foregroundStyle(.white)
+                        .font(.kpRegular(.caption))
+                    
                 }
                 Spacer()
                 Image(.earthBackground)
