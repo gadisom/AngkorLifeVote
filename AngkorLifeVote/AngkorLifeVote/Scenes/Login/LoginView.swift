@@ -16,16 +16,20 @@ struct LoginView: View {
                 Spacer()
                 
                 WmuPosterView()
+                    .padding(.vertical)
                 
                 VStack(spacing: 30) {
-                    TextField("", text: $viewModel.userID, prompt: Text("Enter your ID").foregroundColor(.gray))
+                    TextField("", text: $viewModel.userID, prompt: Text("Enter your ID")
+                        .font(.kpRegular(size: 18))
+                        .foregroundColor(Color.gray2)
+                    )
                         .padding()
                         .background(Color(white: 0.12))
                         .foregroundColor(.gray)
                         .clipShape(RoundedRectangle(cornerRadius: 8))
                         .overlay(
                             RoundedRectangle(cornerRadius: 8)
-                                .stroke(Color.rgb(red: 219, green: 219, blue: 219, opacity: 0.8), lineWidth: 0.5)
+                                .stroke(.AKDBDBDB, lineWidth: 0.5)
                         )
                         .padding(.horizontal)
                     Button(action: {
@@ -33,11 +37,11 @@ struct LoginView: View {
                         viewModel.onLoginSuccess?()
                     }){
                         Text("Log in")
-                            .font(.kpBold(size: 18))
+                            .font(.kpBold(size: 16))
                             .foregroundColor(.white)
                             .frame(maxWidth: .infinity)
                             .padding()
-                            .background(.accent)
+                            .background(.AK_4232_D_5)
                             .clipShape(RoundedRectangle(cornerRadius: 999))
                     }
                     .padding(.horizontal)
@@ -75,13 +79,12 @@ struct WmuPosterView: View {
                 .padding(.horizontal, 70)
             
             Text("Cast your vote for the brightest candidate!\nWorld Miss University voting starts now!")
-                .font(.kpExtraLight())
+                .font(.kpLight(size: 14))
+                .lineSpacing(5)
                 .foregroundColor(.white)
                 .multilineTextAlignment(.center)
         }
-        //.frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(.black)
-        
     }
 }
 
