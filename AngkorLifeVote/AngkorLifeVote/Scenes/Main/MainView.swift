@@ -10,48 +10,45 @@ import SwiftUI
 struct MainView: View {
     @EnvironmentObject var coordinator: MainCoordinator
     @EnvironmentObject var userSession: UserSession
-
+    
     var body: some View {
-        NavigationView {
-            ScrollView {
-                VStack(spacing: 20) {
-                
-                    WmuPosterView()
-                
-                    CountDownView()
-                        .padding(.horizontal, 40)
-                
-                    Image(.earthBackground)
-                        .resizable()
-                        .scaledToFit()
-                        .frame(maxWidth: .infinity)
-                    
-                    VotingInfoView()
-                    
-                    CandidateGridView(candidateService: CandidateService())
-                  
-                    Spacer()
-                }
-            }
-            .background(Color.black)
-            .navigationBarTitle("2024 WMU", displayMode: .inline)
-            .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    Button(action: {
-                        coordinator.logout()
-                    }) {
-                        Image(systemName: "xmark")
-                    }
+        ScrollView {
+            
+            WmuPosterView()
+            
+            CountDownView()
+                .padding(.horizontal, 40)
+            
+            Image(.earthBackground)
+                .resizable()
+                .scaledToFit()
+                .frame(maxWidth: .infinity)
+            
+            VotingInfoView()
+            
+            CandidateGridView(candidateService: CandidateService())
+        }
+        .background(Color.black)
+        .navigationBarTitle("2024 WMU", displayMode: .inline)
+        .toolbar {
+            ToolbarItem(placement: .topBarTrailing) {
+                Button(action: {
+                    coordinator.logout()
+                }) {
+                    Image(systemName: "xmark")
+                        .foregroundStyle(.black)
                 }
             }
         }
+        
     }
 }
 
 
 #Preview {
-    let coordinator = MainCoordinator(appCoordinator: AppCoordinator())
-    MainView()
-        .environmentObject(coordinator)
-        .environmentObject(UserSession())
+    NavigationView {
+        MainView()
+            .environmentObject(MainCoordinator(appCoordinator: AppCoordinator()))
+            .environmentObject(UserSession())
+    }
 }

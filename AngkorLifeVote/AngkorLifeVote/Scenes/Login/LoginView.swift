@@ -65,7 +65,7 @@ struct WmuPosterView: View {
             Text("WORLD MISS UNIVERSITY")
                 .font(.kpMedium(.title))
                 .foregroundColor(.white)
-                .padding(.horizontal)
+                .padding(.bottom)
                 .multilineTextAlignment(.center)
             
             Text("CAMBODIA 2024")

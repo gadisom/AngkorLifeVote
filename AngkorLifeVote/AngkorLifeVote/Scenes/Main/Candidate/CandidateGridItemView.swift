@@ -14,17 +14,8 @@ struct CandidateGridItemView: View {
     var body: some View {
         VStack(spacing: 8) {
             GeometryReader { geometry in
-                AsyncImage(url: URL(string: candidate.profileUrl)) { image in
-                    image
-                        .resizable()
-                        .scaledToFit()
-                        .clipShape(RoundedRectangle(cornerRadius: 8))
-                } placeholder: {
-                    ProgressView()
-                        .foregroundStyle(.white)
-                        .frame(width: geometry.size.width, height: geometry.size.width)
-                        .clipShape(RoundedRectangle(cornerRadius: 8))
-                }
+                CacheImage(url: candidate.profileUrl)
+                    .frame(width: geometry.size.width, height: geometry.size.width)
             }
             .aspectRatio(1, contentMode: .fit) 
 

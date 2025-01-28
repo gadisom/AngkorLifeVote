@@ -54,6 +54,8 @@
 		BD764E542D474A00008E94E5 /* CandidateDetailResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD764E532D474A00008E94E5 /* CandidateDetailResponse.swift */; };
 		BD764E562D4778B9008E94E5 /* ToastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD764E552D4778B9008E94E5 /* ToastView.swift */; };
 		BD764E582D488D18008E94E5 /* CountDownViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD764E572D488D18008E94E5 /* CountDownViewModel.swift */; };
+		BD764E5C2D48D147008E94E5 /* CacheImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD764E5B2D48D147008E94E5 /* CacheImage.swift */; };
+		BD764E5E2D48D159008E94E5 /* ImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD764E5D2D48D159008E94E5 /* ImageLoader.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -106,6 +108,8 @@
 		BD764E532D474A00008E94E5 /* CandidateDetailResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CandidateDetailResponse.swift; sourceTree = "<group>"; };
 		BD764E552D4778B9008E94E5 /* ToastView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastView.swift; sourceTree = "<group>"; };
 		BD764E572D488D18008E94E5 /* CountDownViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountDownViewModel.swift; sourceTree = "<group>"; };
+		BD764E5B2D48D147008E94E5 /* CacheImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CacheImage.swift; sourceTree = "<group>"; };
+		BD764E5D2D48D159008E94E5 /* ImageLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLoader.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -266,6 +270,8 @@
 				BD764E2F2D432381008E94E5 /* Font+Extension.swift */,
 				BD764E312D435FC4008E94E5 /* Color+Extension.swift */,
 				BD764E4B2D452B07008E94E5 /* Array+Extension.swift */,
+				BD764E5B2D48D147008E94E5 /* CacheImage.swift */,
+				BD764E5D2D48D159008E94E5 /* ImageLoader.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -411,6 +417,7 @@
 				BD764E3D2D450CFF008E94E5 /* CandidateItem.swift in Sources */,
 				BD764E3F2D450D35008E94E5 /* CandidateListResponse.swift in Sources */,
 				BD764E3A2D44B35A008E94E5 /* VotingInfoView.swift in Sources */,
+				BD764E5C2D48D147008E94E5 /* CacheImage.swift in Sources */,
 				BD764DFB2D426140008E94E5 /* User.swift in Sources */,
 				BD764E4A2D4527B9008E94E5 /* CandidateGridItemView.swift in Sources */,
 				BD764E0E2D4261B9008E94E5 /* ProfileViewModel.swift in Sources */,
@@ -423,6 +430,7 @@
 				BD764E502D4748C9008E94E5 /* CandidateDetail.swift in Sources */,
 				BD764E0C2D4261B3008E94E5 /* ProfileView.swift in Sources */,
 				BD764E522D474907008E94E5 /* CandidateDetailViewModel.swift in Sources */,
+				BD764E5E2D48D159008E94E5 /* ImageLoader.swift in Sources */,
 				BD764E562D4778B9008E94E5 /* ToastView.swift in Sources */,
 				BD764E322D435FC4008E94E5 /* Color+Extension.swift in Sources */,
 				BD764E342D436C06008E94E5 /* UserSession.swift in Sources */,
