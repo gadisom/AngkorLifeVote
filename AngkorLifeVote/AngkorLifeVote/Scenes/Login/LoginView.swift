@@ -21,7 +21,7 @@ struct LoginView: View {
                 VStack(spacing: 30) {
                     TextField("", text: $viewModel.userID, prompt: Text("Enter your ID")
                         .font(.kpRegular())
-                        .foregroundColor(Color.gray2)
+                        .foregroundColor(.AKgray2)
                     )
                         .padding()
                         .background(Color(white: 0.12))
@@ -29,7 +29,7 @@ struct LoginView: View {
                         .clipShape(RoundedRectangle(cornerRadius: 8))
                         .overlay(
                             RoundedRectangle(cornerRadius: 8)
-                                .stroke(.akdbdbdb, lineWidth: 0.5)
+                                .stroke(Color.AKdbdbdb, lineWidth: 0.5)
                         )
                         .padding(.horizontal)
                     Button(action: {
@@ -41,7 +41,7 @@ struct LoginView: View {
                             .foregroundColor(.white)
                             .frame(maxWidth: .infinity)
                             .padding()
-                            .background(.ak4232D5)
+                            .background(Color.AK4232d5)
                             .clipShape(RoundedRectangle(cornerRadius: 999))
                     }
                     .padding(.horizontal)

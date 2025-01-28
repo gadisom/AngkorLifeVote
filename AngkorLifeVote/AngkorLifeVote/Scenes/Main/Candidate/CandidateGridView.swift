@@ -25,8 +25,8 @@ struct CandidateGridView: View {
         VStack(alignment: .leading, spacing: 20) {
             VStack(alignment: .leading) {
                 Rectangle()
-                    .fill(.ak6F76Ff)
-                    .frame(width: 19.41, height: 3) 
+                    .fill(Color.AK6f76ff)
+                    .frame(width: 19.41, height: 3)
                 
                 Text("2024\nCandidate List")
                     .font(.kpSemiBold(.largeTitle))
@@ -35,7 +35,7 @@ struct CandidateGridView: View {
                 
                 Text("※ You can vote for up to 3 candidates")
                     .font(.kpRegular())
-                    .foregroundStyle(.gray2)
+                    .foregroundStyle(Color.AKgray2)
             }
             .padding(.horizontal)
             
@@ -54,7 +54,7 @@ struct CandidateGridView: View {
             
             Text("COPYRIGHT © WUPSC ALL RIGHT RESERVED.")
                 .font(.kpRegular(.caption))
-                .foregroundStyle(.backgroundSecondary)
+                .foregroundStyle(Color.AKbackground)
                 .frame(maxWidth: .infinity, alignment: .center)
         }
         .background(Color.black)

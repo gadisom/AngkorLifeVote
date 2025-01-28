@@ -12,7 +12,7 @@ struct VotingInfoView: View {
         VStack(alignment: .leading) {
             VStack(alignment: .leading, spacing: 8) {
                 Text("WORLD MISS UNIVERSITY")
-                    .foregroundColor(.ak6F76Ff)
+                    .foregroundColor(Color.AK6f76ff)
                     .font(.kpMedium(.title3))
                 
                 Text("Mobile Voting Information")
@@ -25,7 +25,7 @@ struct VotingInfoView: View {
                         together future global leaders who embody both
                         beauty and intellect.
                         """)
-                .foregroundColor(.gray2)
+                .foregroundColor(Color.AKgray2)
                 .font(.kpRegular(size: 14))
                 .lineSpacing(5)
             }
@@ -35,7 +35,7 @@ struct VotingInfoView: View {
                 HStack {
                     Text("Period")
                         .font(.kpMedium())
-                        .foregroundColor(Color.akf6F6F6)
+                        .foregroundColor(Color.AKf6f6f6)
                         .frame(width: 100, alignment: .leading)
                         .padding(.leading)
                     HStack {
@@ -44,7 +44,7 @@ struct VotingInfoView: View {
                             .font(.title3)
                         Text("10/17(Thu) 12PM - 10/31(Thu) 6PM")
                             .font(.kpRegular(.caption))
-                            .foregroundColor(.akdbdbdb)
+                            .foregroundColor(Color.AKdbdbdb)
                     }
                 }
                 
@@ -59,7 +59,7 @@ struct VotingInfoView: View {
                     VStack{
                         Text("How to vote")
                             .font(.kpMedium())
-                            .foregroundColor(Color.akf6F6F6)
+                            .foregroundColor(Color.AKf6f6f6)
                             .frame(width: 100, alignment: .leading)
                             .padding(.leading)
                     }
@@ -72,7 +72,7 @@ struct VotingInfoView: View {
                             Text("Up to three people can participate in early voting per day.")
                                 .font(.kpRegular(.caption))
                                 .padding(.trailing)
-                                .foregroundColor(.akdbdbdb)
+                                .foregroundColor(Color.AKdbdbdb)
                         }
                         HStack(alignment: .top) {
                             Text("•")
@@ -83,7 +83,7 @@ struct VotingInfoView: View {
                         }
                     }
                     .padding(.trailing, 3)
-                    .foregroundColor(.gray219)
+                    .foregroundColor(Color.AKdbdbdb)
                 }
                 .padding(.vertical)
             }

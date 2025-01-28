@@ -34,20 +34,17 @@ struct CandidateGridItemView: View {
                 .padding(.top)
 
             Text("\(candidate.voteCnt) Voted")
-                .font(.kpRegular())
-                .foregroundColor(.rgb(red: 111, green: 118, blue: 255))
+                .font(.kpMedium())
+                .foregroundColor(Color.AK6f76ff)
 
-            Button(action: {
-            }) {
-                Text(isVoted ? "Voted" : "Vote")
-                    .font(.kpBold(size: 16))
-                    .foregroundColor(isVoted ? .accent : .white)
-                    .frame(maxWidth: .infinity, maxHeight: 34)
-                    .background(isVoted ? .white : .accent)
-                    .clipShape(RoundedRectangle(cornerRadius: 999))
-            }
-            .disabled(true)
-            .frame(maxWidth: .infinity)
+            
+            Text(isVoted ? "Voted" : "Vote")
+                .font(.kpBold(size: 16))
+                .foregroundColor(isVoted ? Color.AK4232d5 : .white)
+                .frame(maxWidth: .infinity, maxHeight: 34)
+                .background(isVoted ? .white : Color.AK4232d5)
+                .clipShape(RoundedRectangle(cornerRadius: 999))
+                .frame(maxWidth: .infinity)
         }
     }
 }

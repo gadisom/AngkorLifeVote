@@ -44,12 +44,12 @@ struct CountDownBlock: View {
                         .font(.kpMedium(.title))
                         .foregroundColor(.white)
                         .frame(width: proxy.size.width, height: proxy.size.width)
-                        .background(.ak363334)
+                        .background(Color.AK363334)
                         .clipShape(RoundedRectangle(cornerRadius: 4))
                 }
                 Text(unit)
                     .font(.kpMedium())
-                    .foregroundColor(.akb9B9B9)
+                    .foregroundColor(Color.AKb9b9b9)
                     .offset(y: proxy.size.width * 0.75)
             }
         }

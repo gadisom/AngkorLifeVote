@@ -43,11 +43,11 @@ struct CandidateDetailView: View {
                                 // MARK: - 이름 / 번호
                                 VStack(alignment: .leading, spacing: 4) {
                                     Text(detail.name)
-                                        .font(.kpSemiBold(.largeTitle))
+                                        .font(.kpMedium(.largeTitle))
                                         .foregroundStyle(.white)
                                     Text("Entry No.\(detail.candidateNumber)")
                                         .font(.kpMedium(.headline))
-                                        .foregroundColor(.rgb(red: 111, green: 118, blue: 255))
+                                        .foregroundColor(Color.AK6f76ff)
                                 }
                                 .padding()
                                 
@@ -57,8 +57,9 @@ struct CandidateDetailView: View {
                                 
                                 Text("COPYRIGHT © WUPSC ALL RIGHT RESERVED.")
                                     .font(.kpRegular(.caption))
-                                    .foregroundStyle(.gray)
+                                    .foregroundStyle(Color.AKbackground)
                                     .frame(maxWidth: .infinity, alignment: .center)
+                                    .padding(.top)
                                 
                                 Button(action: {
                                     viewModel.vote()
@@ -73,9 +74,9 @@ struct CandidateDetailView: View {
                                         Text(detail.voted ? "Voted" : "Vote")
                                             .font(.kpBold(.title3))
                                     }
-                                    .foregroundColor(detail.voted ? .accent : .white)
+                                    .foregroundColor(detail.voted ? Color.AK4232d5 : .white)
                                     .frame(maxWidth: .infinity, minHeight: 48)
-                                    .background(detail.voted ? .white : .accent)
+                                    .background(detail.voted ? .white : Color.AK4232d5)
                                     .clipShape(RoundedRectangle(cornerRadius: 999))
                                 }
                                 .disabled(detail.voted)
@@ -150,7 +151,7 @@ struct CandidateDetailView: View {
             rowItem(title: "Ambition", value: detail.ambition)
         }
         .padding()
-        .background(Color.rgb(red: 37, green: 37, blue: 37))
+        .background(Color.AK303030)
         .clipShape(RoundedRectangle(cornerRadius: 6))
     }
     
@@ -158,10 +159,10 @@ struct CandidateDetailView: View {
         VStack(alignment: .leading, spacing: 5) {
             Text(title)
                 .font(.kpMedium(.subheadline))
-                .foregroundColor(.gray)
+                .foregroundColor(Color.AK7c7c7c)
             Text(value)
                 .font(.kpRegular())
-                .foregroundColor(.white)
+                .foregroundColor(Color.AKf6f6f6)
         }
     }
 }
