@@ -20,7 +20,7 @@ struct LoginView: View {
                 
                 VStack(spacing: 30) {
                     TextField("", text: $viewModel.userID, prompt: Text("Enter your ID")
-                        .font(.kpRegular(size: 18))
+                        .font(.kpRegular())
                         .foregroundColor(Color.gray2)
                     )
                         .padding()
@@ -29,7 +29,7 @@ struct LoginView: View {
                         .clipShape(RoundedRectangle(cornerRadius: 8))
                         .overlay(
                             RoundedRectangle(cornerRadius: 8)
-                                .stroke(.AKDBDBDB, lineWidth: 0.5)
+                                .stroke(.akdbdbdb, lineWidth: 0.5)
                         )
                         .padding(.horizontal)
                     Button(action: {
@@ -41,7 +41,7 @@ struct LoginView: View {
                             .foregroundColor(.white)
                             .frame(maxWidth: .infinity)
                             .padding()
-                            .background(.AK_4232_D_5)
+                            .background(.ak4232D5)
                             .clipShape(RoundedRectangle(cornerRadius: 999))
                     }
                     .padding(.horizontal)
@@ -69,7 +69,7 @@ struct WmuPosterView: View {
                 .multilineTextAlignment(.center)
             
             Text("CAMBODIA 2024")
-                .font(.kpLight(size: 25))
+                .font(.kpLight(.title2))
                 .foregroundColor(.white)
                 .padding()
             
@@ -79,7 +79,7 @@ struct WmuPosterView: View {
                 .padding(.horizontal, 70)
             
             Text("Cast your vote for the brightest candidate!\nWorld Miss University voting starts now!")
-                .font(.kpLight(size: 14))
+                .font(.kpLight(.subheadline))
                 .lineSpacing(5)
                 .foregroundColor(.white)
                 .multilineTextAlignment(.center)

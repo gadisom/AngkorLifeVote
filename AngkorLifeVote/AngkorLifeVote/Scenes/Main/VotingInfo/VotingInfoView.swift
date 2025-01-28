@@ -12,29 +12,30 @@ struct VotingInfoView: View {
         VStack(alignment: .leading) {
             VStack(alignment: .leading, spacing: 8) {
                 Text("WORLD MISS UNIVERSITY")
-                    .foregroundColor(.rgb(red: 111, green: 118, blue: 255))
+                    .foregroundColor(.ak6F76Ff)
                     .font(.kpMedium(.title3))
                 
                 Text("Mobile Voting Information")
                     .foregroundColor(.white)
-                    .font(.kpBold(.largeTitle))
-                    .fontWeight(.bold)
+                    .font(.kpSemiBold(.largeTitle))
+                    .padding(.bottom)
                 
                 Text("""
                         2024 World Miss University brings 
                         together future global leaders who embody both
                         beauty and intellect.
                         """)
-                .foregroundColor(.rgb(red: 174, green: 174, blue: 178))
+                .foregroundColor(.gray2)
                 .font(.kpRegular(size: 14))
                 .lineSpacing(5)
             }
+            .padding(.vertical)
             
             VStack(alignment: .leading, spacing: 8) {
                 HStack {
                     Text("Period")
-                        .font(.kpMedium(size: 16))
-                        .foregroundColor(.white)
+                        .font(.kpMedium())
+                        .foregroundColor(Color.akf6F6F6)
                         .frame(width: 100, alignment: .leading)
                         .padding(.leading)
                     HStack {
@@ -43,22 +44,22 @@ struct VotingInfoView: View {
                             .font(.title3)
                         Text("10/17(Thu) 12PM - 10/31(Thu) 6PM")
                             .font(.kpRegular(.caption))
-                            .foregroundColor(.gray219)
+                            .foregroundColor(.akdbdbdb)
                     }
                 }
                 
-                .padding(.vertical)
+                .padding(.top)
                 
                 Divider()
-                    .frame(height: 1)
+                    .frame(height: 0.4)
                     .background(Color.gray.opacity(0.7))
                     .padding(.horizontal)
                 
                 HStack(alignment: .top) {
                     VStack{
                         Text("How to vote")
-                            .font(.kpMedium(.headline))
-                            .foregroundColor(.white)
+                            .font(.kpMedium())
+                            .foregroundColor(Color.akf6F6F6)
                             .frame(width: 100, alignment: .leading)
                             .padding(.leading)
                     }
@@ -71,6 +72,7 @@ struct VotingInfoView: View {
                             Text("Up to three people can participate in early voting per day.")
                                 .font(.kpRegular(.caption))
                                 .padding(.trailing)
+                                .foregroundColor(.akdbdbdb)
                         }
                         HStack(alignment: .top) {
                             Text("•")

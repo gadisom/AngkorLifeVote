@@ -42,15 +42,15 @@ struct CountDownBlock: View {
                 VStack {
                     Text(number)
                         .font(.kpMedium(.title))
-                        .foregroundColor(.gray215)
+                        .foregroundColor(.white)
                         .frame(width: proxy.size.width, height: proxy.size.width)
-                        .background(.secondary)
+                        .background(.ak363334)
                         .clipShape(RoundedRectangle(cornerRadius: 4))
                 }
                 Text(unit)
                     .font(.kpMedium())
-                    .foregroundColor(.gray215)
-                    .offset(y: proxy.size.width * 0.75) 
+                    .foregroundColor(.akb9B9B9)
+                    .offset(y: proxy.size.width * 0.75)
             }
         }
         .aspectRatio(1, contentMode: .fit)
