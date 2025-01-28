@@ -14,12 +14,9 @@
 		BD764DF22D42610D008E94E5 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD764DF12D42610D008E94E5 /* Coordinator.swift */; };
 		BD764DF42D42611C008E94E5 /* LoginCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD764DF32D42611C008E94E5 /* LoginCoordinator.swift */; };
 		BD764DF62D426125008E94E5 /* MainCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD764DF52D426125008E94E5 /* MainCoordinator.swift */; };
-		BD764DFB2D426140008E94E5 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD764DFA2D426140008E94E5 /* User.swift */; };
 		BD764DFE2D426154008E94E5 /* CandidateServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD764DFD2D426154008E94E5 /* CandidateServiceProtocol.swift */; };
 		BD764E022D426176008E94E5 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD764E012D426176008E94E5 /* LoginView.swift */; };
 		BD764E072D426189008E94E5 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD764E062D426189008E94E5 /* MainView.swift */; };
-		BD764E0C2D4261B3008E94E5 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD764E0B2D4261B3008E94E5 /* ProfileView.swift */; };
-		BD764E0E2D4261B9008E94E5 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD764E0D2D4261B9008E94E5 /* ProfileViewModel.swift */; };
 		BD764E1F2D426BCB008E94E5 /* KantumruyPro-ExtraLightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BD764E142D426BCB008E94E5 /* KantumruyPro-ExtraLightItalic.ttf */; };
 		BD764E202D426BCB008E94E5 /* KantumruyPro-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BD764E1B2D426BCB008E94E5 /* KantumruyPro-SemiBold.ttf */; };
 		BD764E212D426BCB008E94E5 /* KantumruyPro-ExtraLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BD764E132D426BCB008E94E5 /* KantumruyPro-ExtraLight.ttf */; };
@@ -64,12 +61,9 @@
 		BD764DF12D42610D008E94E5 /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
 		BD764DF32D42611C008E94E5 /* LoginCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginCoordinator.swift; sourceTree = "<group>"; };
 		BD764DF52D426125008E94E5 /* MainCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCoordinator.swift; sourceTree = "<group>"; };
-		BD764DFA2D426140008E94E5 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		BD764DFD2D426154008E94E5 /* CandidateServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CandidateServiceProtocol.swift; sourceTree = "<group>"; };
 		BD764E012D426176008E94E5 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		BD764E062D426189008E94E5 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
-		BD764E0B2D4261B3008E94E5 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
-		BD764E0D2D4261B9008E94E5 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
 		BD764E112D426BCB008E94E5 /* KantumruyPro-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "KantumruyPro-Bold.ttf"; sourceTree = "<group>"; };
 		BD764E122D426BCB008E94E5 /* KantumruyPro-BoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "KantumruyPro-BoldItalic.ttf"; sourceTree = "<group>"; };
 		BD764E132D426BCB008E94E5 /* KantumruyPro-ExtraLight.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "KantumruyPro-ExtraLight.ttf"; sourceTree = "<group>"; };
@@ -84,7 +78,7 @@
 		BD764E1C2D426BCB008E94E5 /* KantumruyPro-SemiBoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "KantumruyPro-SemiBoldItalic.ttf"; sourceTree = "<group>"; };
 		BD764E1D2D426BCB008E94E5 /* KantumruyPro-Thin.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "KantumruyPro-Thin.ttf"; sourceTree = "<group>"; };
 		BD764E1E2D426BCB008E94E5 /* KantumruyPro-ThinItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "KantumruyPro-ThinItalic.ttf"; sourceTree = "<group>"; };
-		BD764E2D2D426C37008E94E5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		BD764E2D2D426C37008E94E5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BD764E2F2D432381008E94E5 /* Font+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Font+Extension.swift"; sourceTree = "<group>"; };
 		BD764E312D435FC4008E94E5 /* Color+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Extension.swift"; sourceTree = "<group>"; };
 		BD764E332D436C06008E94E5 /* UserSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSession.swift; sourceTree = "<group>"; };
@@ -140,11 +134,10 @@
 				BD764DED2D4260CD008E94E5 /* App */,
 				BD764DF02D4260F7008E94E5 /* Coordinators */,
 				BD764DF92D426134008E94E5 /* Models */,
-				BD764DFC2D426144008E94E5 /* Services */,
 				BD764DFF2D42615C008E94E5 /* Scenes */,
-				BD764DE72D425A3A008E94E5 /* ContentView.swift */,
-				BD764E0F2D4261CA008E94E5 /* Resources */,
+				BD764DFC2D426144008E94E5 /* Services */,
 				BD764E2E2D432370008E94E5 /* Utils */,
+				BD764E0F2D4261CA008E94E5 /* Resources */,
 			);
 			path = AngkorLifeVote;
 			sourceTree = "<group>";
@@ -153,8 +146,8 @@
 			isa = PBXGroup;
 			children = (
 				BD764DE52D425A3A008E94E5 /* AngkorLifeVoteApp.swift */,
-				BD764DEE2D4260DF008E94E5 /* AppCoordinator.swift */,
 				BD764E332D436C06008E94E5 /* UserSession.swift */,
+				BD764DE72D425A3A008E94E5 /* ContentView.swift */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -162,6 +155,7 @@
 		BD764DF02D4260F7008E94E5 /* Coordinators */ = {
 			isa = PBXGroup;
 			children = (
+				BD764DEE2D4260DF008E94E5 /* AppCoordinator.swift */,
 				BD764DF12D42610D008E94E5 /* Coordinator.swift */,
 				BD764DF32D42611C008E94E5 /* LoginCoordinator.swift */,
 				BD764DF52D426125008E94E5 /* MainCoordinator.swift */,
@@ -173,7 +167,6 @@
 			isa = PBXGroup;
 			children = (
 				BD764E3B2D450CF3008E94E5 /* Candiate */,
-				BD764DFA2D426140008E94E5 /* User.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -193,8 +186,6 @@
 			children = (
 				BD764E002D42616E008E94E5 /* Login */,
 				BD764E052D426182008E94E5 /* Main */,
-				BD764E0A2D4261A0008E94E5 /* Profile */,
-				BD764E552D4778B9008E94E5 /* ToastView.swift */,
 			);
 			path = Scenes;
 			sourceTree = "<group>";
@@ -210,21 +201,12 @@
 		BD764E052D426182008E94E5 /* Main */ = {
 			isa = PBXGroup;
 			children = (
+				BD764E062D426189008E94E5 /* MainView.swift */,
 				BD764E442D452173008E94E5 /* Candidate */,
 				BD764E382D44B346008E94E5 /* VotingInfo */,
 				BD764E352D44B20F008E94E5 /* CountDown */,
-				BD764E062D426189008E94E5 /* MainView.swift */,
 			);
 			path = Main;
-			sourceTree = "<group>";
-		};
-		BD764E0A2D4261A0008E94E5 /* Profile */ = {
-			isa = PBXGroup;
-			children = (
-				BD764E0B2D4261B3008E94E5 /* ProfileView.swift */,
-				BD764E0D2D4261B9008E94E5 /* ProfileViewModel.swift */,
-			);
-			path = Profile;
 			sourceTree = "<group>";
 		};
 		BD764E0F2D4261CA008E94E5 /* Resources */ = {
@@ -260,9 +242,8 @@
 		BD764E2E2D432370008E94E5 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
-				BD764E2F2D432381008E94E5 /* Font+Extension.swift */,
-				BD764E312D435FC4008E94E5 /* Color+Extension.swift */,
-				BD764E4B2D452B07008E94E5 /* Array+Extension.swift */,
+				BD764E602D48EBCB008E94E5 /* Global */,
+				BD764E5F2D48EB31008E94E5 /* Extension */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -305,6 +286,24 @@
 				BD764E512D474907008E94E5 /* CandidateDetailViewModel.swift */,
 			);
 			path = Candidate;
+			sourceTree = "<group>";
+		};
+		BD764E5F2D48EB31008E94E5 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				BD764E2F2D432381008E94E5 /* Font+Extension.swift */,
+				BD764E312D435FC4008E94E5 /* Color+Extension.swift */,
+				BD764E4B2D452B07008E94E5 /* Array+Extension.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
+		BD764E602D48EBCB008E94E5 /* Global */ = {
+			isa = PBXGroup;
+			children = (
+				BD764E552D4778B9008E94E5 /* ToastView.swift */,
+			);
+			path = Global;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -407,9 +406,7 @@
 				BD764E3D2D450CFF008E94E5 /* CandidateItem.swift in Sources */,
 				BD764E3F2D450D35008E94E5 /* CandidateListResponse.swift in Sources */,
 				BD764E3A2D44B35A008E94E5 /* VotingInfoView.swift in Sources */,
-				BD764DFB2D426140008E94E5 /* User.swift in Sources */,
 				BD764E4A2D4527B9008E94E5 /* CandidateGridItemView.swift in Sources */,
-				BD764E0E2D4261B9008E94E5 /* ProfileViewModel.swift in Sources */,
 				BD764DF42D42611C008E94E5 /* LoginCoordinator.swift in Sources */,
 				BD764E412D451D05008E94E5 /* CandidateService.swift in Sources */,
 				BD764E432D451F49008E94E5 /* VoteAPI.swift in Sources */,
@@ -417,7 +414,6 @@
 				BD764E542D474A00008E94E5 /* CandidateDetailResponse.swift in Sources */,
 				BD764E022D426176008E94E5 /* LoginView.swift in Sources */,
 				BD764E502D4748C9008E94E5 /* CandidateDetail.swift in Sources */,
-				BD764E0C2D4261B3008E94E5 /* ProfileView.swift in Sources */,
 				BD764E522D474907008E94E5 /* CandidateDetailViewModel.swift in Sources */,
 				BD764E562D4778B9008E94E5 /* ToastView.swift in Sources */,
 				BD764E322D435FC4008E94E5 /* Color+Extension.swift in Sources */,
