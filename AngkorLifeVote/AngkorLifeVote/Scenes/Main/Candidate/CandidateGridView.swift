@@ -24,14 +24,18 @@ struct CandidateGridView: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 20) {
             VStack(alignment: .leading) {
+                Rectangle()
+                    .fill(.ak6F76Ff)
+                    .frame(width: 19.41, height: 3) 
+                
                 Text("2024\nCandidate List")
                     .font(.kpSemiBold(.largeTitle))
                     .foregroundStyle(.white)
-                    .padding(.vertical)
+                    .padding(.bottom)
                 
                 Text("※ You can vote for up to 3 candidates")
                     .font(.kpRegular())
-                    .foregroundStyle(Color.rgb(red: 174, green: 174, blue: 178))
+                    .foregroundStyle(.gray2)
             }
             .padding(.horizontal)
             
@@ -50,7 +54,7 @@ struct CandidateGridView: View {
             
             Text("COPYRIGHT © WUPSC ALL RIGHT RESERVED.")
                 .font(.kpRegular(.caption))
-                .foregroundStyle(.gray)
+                .foregroundStyle(.backgroundSecondary)
                 .frame(maxWidth: .infinity, alignment: .center)
         }
         .background(Color.black)
@@ -63,7 +67,9 @@ struct CandidateGridView: View {
 }
 
 #Preview {
-    CandidateGridView(candidateService: CandidateService())
-        .environmentObject(UserSession())
-        .environmentObject(MainCoordinator(appCoordinator: AppCoordinator()))
+    ScrollView {
+        CandidateGridView(candidateService: CandidateService())
+            .environmentObject(UserSession())
+            .environmentObject(MainCoordinator(appCoordinator: AppCoordinator()))
+    }
 }
