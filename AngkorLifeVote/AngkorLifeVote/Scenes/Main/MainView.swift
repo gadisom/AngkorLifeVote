@@ -34,28 +34,6 @@ struct MainView: View {
                 }
             }
             .background(Color.black)
-            .background(
-                NavigationLink(
-                    destination: ZStack {
-                        if let candidate = coordinator.selectedCandidate {
-                            CandidateDetailView(viewModel: CandidateDetailViewModel(id: candidate.id, userID: userSession.userID ,candidateService: CandidateService()))
-                                .environmentObject(coordinator)
-                        } else {
-                            EmptyView()
-                        }
-                    },
-                    isActive: Binding<Bool>(
-                        get: { coordinator.selectedCandidate != nil },
-                        set: { newValue in
-                            if !newValue {
-                                coordinator.selectedCandidate = nil
-                            }
-                        }
-                    )
-                ) {
-                    EmptyView()
-                }
-            )
             .navigationBarTitle("2024 WMU", displayMode: .inline)
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {

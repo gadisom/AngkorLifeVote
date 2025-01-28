@@ -11,7 +11,7 @@ struct CandidateGridView: View {
     @EnvironmentObject var userSession: UserSession
     @EnvironmentObject var coordinator: MainCoordinator
     @StateObject private var viewModel: CandidateGridViewModel
-    
+    @State private var isVoted: Bool = false
     init(candidateService: CandidateServiceProtocol) {
         _viewModel = StateObject(wrappedValue: CandidateGridViewModel(candidateService: candidateService))
     }
@@ -58,18 +58,48 @@ struct CandidateGridView: View {
                 .frame(maxWidth: .infinity, alignment: .center)
         }
         .background(Color.black)
+        .background(
+            NavigationLink(
+                destination: ZStack {
+                    if let candidate = coordinator.selectedCandidate {
+                        CandidateDetailView(viewModel: CandidateDetailViewModel(id: candidate.id, userID: userSession.userID ,candidateService: CandidateService()), isVoted: $isVoted)
+                            .environmentObject(coordinator)
+                    } else {
+                        EmptyView()
+                    }
+                },
+                isActive: Binding<Bool>(
+                    get: { coordinator.selectedCandidate != nil },
+                    set: { newValue in
+                        if !newValue {
+                            coordinator.selectedCandidate = nil
+                        }
+                    }
+                )
+            ) {
+                EmptyView()
+            }
+        )
         .onAppear {
             if viewModel.candidates.isEmpty {
                 viewModel.fetchAllCandidates(userID: userSession.userID)
+            }
+        }
+        .task {
+            if isVoted {
+                 viewModel.fetchAllCandidates(userID: userSession.userID)
+                 isVoted = false
             }
         }
     }
 }
 
 #Preview {
-    ScrollView {
-        CandidateGridView(candidateService: CandidateService())
-            .environmentObject(UserSession())
-            .environmentObject(MainCoordinator(appCoordinator: AppCoordinator()))
+    NavigationView {
+        ScrollView {
+            CandidateGridView(candidateService: CandidateService())
+                .environmentObject(UserSession())
+                .environmentObject(MainCoordinator(appCoordinator: AppCoordinator()))
+        }
     }
 }

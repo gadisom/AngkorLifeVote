@@ -8,10 +8,10 @@
 import SwiftUI
 
 struct CandidateDetailView: View {
-    @ObservedObject var viewModel: CandidateDetailViewModel
+    @ObservedObject var viewModel: CandidateDetailViewModel 
     @EnvironmentObject var coordinator: AppCoordinator
     @EnvironmentObject var userSession: UserSession
-
+    @Binding var isVoted: Bool
     var body: some View {
         GeometryReader { proxy in
             ZStack {
@@ -74,7 +74,7 @@ struct CandidateDetailView: View {
                                         Text(detail.voted ? "Voted" : "Vote")
                                             .font(.kpBold(.title3))
                                     }
-                                    .foregroundColor(detail.voted ? Color.AK4232d5 : .white)
+                                    .foregroundStyle(detail.voted ? Color.AK4232d5 : .white)
                                     .frame(maxWidth: .infinity, minHeight: 48)
                                     .background(detail.voted ? .white : Color.AK4232d5)
                                     .clipShape(RoundedRectangle(cornerRadius: 999))
@@ -110,6 +110,7 @@ struct CandidateDetailView: View {
                         title: viewModel.alertMessage == "Thank you for voting" ? "Voting Completed" : "Voting Failed",
                         message: viewModel.alertMessage ?? "Thank you for voting.",
                         confirmAction: {
+                            isVoted = true
                             withAnimation {
                                 viewModel.showAlert = false // Alert 닫기
                                 viewModel.fetchDetail()
@@ -173,7 +174,7 @@ struct CandidateDetailView: View {
             id: 58,
             userID: "used3dax3rsd2A",
             candidateService: CandidateService()
-        )
+        ), isVoted: .constant(false)
     )
     .environmentObject(AppCoordinator())
     .environmentObject(UserSession())

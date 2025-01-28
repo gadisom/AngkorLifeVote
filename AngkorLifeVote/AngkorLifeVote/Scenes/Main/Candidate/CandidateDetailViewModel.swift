@@ -15,6 +15,7 @@ final class CandidateDetailViewModel: ObservableObject {
     @Published var showAlert: Bool = false
     @Published var alertMessage: String?
     @Published var currentIndex: Int = 0
+    
     private var timerTask: Task<Void, Never>?
     
     private let userID: String
