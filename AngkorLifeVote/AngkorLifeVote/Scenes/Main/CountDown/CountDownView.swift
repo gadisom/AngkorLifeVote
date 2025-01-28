@@ -8,24 +8,26 @@
 import SwiftUI
 
 struct CountDownView: View {
-    
+    @StateObject private var viewModel: CountDownViewModel = CountDownViewModel()
+
     var body: some View {
         HStack(spacing: 5) {
-            CountDownBlock(number: "16", unit: "DAY")
+            CountDownBlock(number: viewModel.days, unit: "DAY")
             Text(":")
                 .font(.title)
                 .foregroundColor(.white)
             
-            CountDownBlock(number: "00", unit: "HR")
+            CountDownBlock(number: viewModel.hours, unit: "HR")
             Text(":")
                 .font(.title)
                 .foregroundColor(.white)
             
-            CountDownBlock(number: "08", unit: "MIN")
+            CountDownBlock(number: viewModel.minutes, unit: "MIN")
             Text(":")
                 .font(.title)
                 .foregroundColor(.white)
-            CountDownBlock(number: "27", unit: "SEC")
+            
+            CountDownBlock(number: viewModel.seconds, unit: "SEC")
         }
     }
 }
@@ -48,13 +50,13 @@ struct CountDownBlock: View {
                 Text(unit)
                     .font(.kpMedium())
                     .foregroundColor(.gray215)
-                    .offset(y: proxy.size.width * 0.75) // 숫자 박스 아래로 이동
+                    .offset(y: proxy.size.width * 0.75) 
             }
         }
         .aspectRatio(1, contentMode: .fit)
     }
 }
-
 #Preview {
-    CountDownView()
+     CountDownView()
+        .environmentObject(AppCoordinator())
 }

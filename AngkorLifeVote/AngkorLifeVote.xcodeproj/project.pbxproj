@@ -14,7 +14,6 @@
 		BD764DF22D42610D008E94E5 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD764DF12D42610D008E94E5 /* Coordinator.swift */; };
 		BD764DF42D42611C008E94E5 /* LoginCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD764DF32D42611C008E94E5 /* LoginCoordinator.swift */; };
 		BD764DF62D426125008E94E5 /* MainCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD764DF52D426125008E94E5 /* MainCoordinator.swift */; };
-		BD764DF82D426130008E94E5 /* ProfileCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD764DF72D426130008E94E5 /* ProfileCoordinator.swift */; };
 		BD764DFB2D426140008E94E5 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD764DFA2D426140008E94E5 /* User.swift */; };
 		BD764DFE2D426154008E94E5 /* CandidateServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD764DFD2D426154008E94E5 /* CandidateServiceProtocol.swift */; };
 		BD764E022D426176008E94E5 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD764E012D426176008E94E5 /* LoginView.swift */; };
@@ -54,6 +53,7 @@
 		BD764E522D474907008E94E5 /* CandidateDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD764E512D474907008E94E5 /* CandidateDetailViewModel.swift */; };
 		BD764E542D474A00008E94E5 /* CandidateDetailResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD764E532D474A00008E94E5 /* CandidateDetailResponse.swift */; };
 		BD764E562D4778B9008E94E5 /* ToastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD764E552D4778B9008E94E5 /* ToastView.swift */; };
+		BD764E582D488D18008E94E5 /* CountDownViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD764E572D488D18008E94E5 /* CountDownViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -65,7 +65,6 @@
 		BD764DF12D42610D008E94E5 /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
 		BD764DF32D42611C008E94E5 /* LoginCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginCoordinator.swift; sourceTree = "<group>"; };
 		BD764DF52D426125008E94E5 /* MainCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCoordinator.swift; sourceTree = "<group>"; };
-		BD764DF72D426130008E94E5 /* ProfileCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCoordinator.swift; sourceTree = "<group>"; };
 		BD764DFA2D426140008E94E5 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		BD764DFD2D426154008E94E5 /* CandidateServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CandidateServiceProtocol.swift; sourceTree = "<group>"; };
 		BD764E012D426176008E94E5 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
@@ -106,6 +105,7 @@
 		BD764E512D474907008E94E5 /* CandidateDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CandidateDetailViewModel.swift; sourceTree = "<group>"; };
 		BD764E532D474A00008E94E5 /* CandidateDetailResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CandidateDetailResponse.swift; sourceTree = "<group>"; };
 		BD764E552D4778B9008E94E5 /* ToastView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastView.swift; sourceTree = "<group>"; };
+		BD764E572D488D18008E94E5 /* CountDownViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountDownViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -167,7 +167,6 @@
 				BD764DF12D42610D008E94E5 /* Coordinator.swift */,
 				BD764DF32D42611C008E94E5 /* LoginCoordinator.swift */,
 				BD764DF52D426125008E94E5 /* MainCoordinator.swift */,
-				BD764DF72D426130008E94E5 /* ProfileCoordinator.swift */,
 			);
 			path = Coordinators;
 			sourceTree = "<group>";
@@ -275,6 +274,7 @@
 			isa = PBXGroup;
 			children = (
 				BD764E362D44B229008E94E5 /* CountDownView.swift */,
+				BD764E572D488D18008E94E5 /* CountDownViewModel.swift */,
 			);
 			path = CountDown;
 			sourceTree = "<group>";
@@ -396,12 +396,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BD764E582D488D18008E94E5 /* CountDownViewModel.swift in Sources */,
 				BD764E482D452190008E94E5 /* CandidateGridViewModel.swift in Sources */,
 				BD764E372D44B229008E94E5 /* CountDownView.swift in Sources */,
 				BD764DF22D42610D008E94E5 /* Coordinator.swift in Sources */,
 				BD764E072D426189008E94E5 /* MainView.swift in Sources */,
 				BD764E4E2D4673E6008E94E5 /* CandidateDetailView.swift in Sources */,
-				BD764DF82D426130008E94E5 /* ProfileCoordinator.swift in Sources */,
 				BD764E042D42617D008E94E5 /* LoginViewModel.swift in Sources */,
 				BD764E462D452183008E94E5 /* CandidateGridView.swift in Sources */,
 				BD764DF62D426125008E94E5 /* MainCoordinator.swift in Sources */,

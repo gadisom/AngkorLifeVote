@@ -14,13 +14,12 @@ final class MainCoordinator: Coordinator, ObservableObject {
     init(appCoordinator: AppCoordinator?) {
         self.appCoordinator = appCoordinator
     }
+    
     func start() -> AnyView {
-        let mainView = MainView(viewModel: MainViewModel())
-            .environmentObject(self)
-        
         return AnyView(
             NavigationView {
-                mainView
+                MainView()
+                    .environmentObject(self)
             }
         )
     }
