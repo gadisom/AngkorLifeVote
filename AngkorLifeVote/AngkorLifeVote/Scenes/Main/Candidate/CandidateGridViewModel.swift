@@ -9,10 +9,12 @@ import SwiftUI
 import Combine
 
 final class CandidateGridViewModel: ObservableObject {
+    @EnvironmentObject var userSession: UserSession
     @Published var candidates: [CandidateItem] = []
     @Published var isLoading: Bool = false
     @Published var errorMessage: String?
-    
+    @Published var alertMessage = ""
+    @Published var showAlert: Bool = false
     // 이미 투표한 후보자 ID들
     @Published var votedIDs: Set<Int> = []
     @Published var sortType: SortType = .name
@@ -23,10 +25,31 @@ final class CandidateGridViewModel: ObservableObject {
         self.candidateService = candidateService
     }
     
+    func vote(userID: String, candidateID: Int) {
+        guard !isLoading else { return }
+        isLoading = true
+        errorMessage = nil
+        
+        Task {
+            let success = await candidateService.vote(userID: userID,
+                                                      candidateID: candidateID)
+            await MainActor.run {
+                self.isLoading = false
+                if success {
+                    self.alertMessage = "Thank you for voting"
+                    fetchAllCandidates(userID: userID)
+                } else {
+                    self.alertMessage = "You have already voted or failed."
+                }
+                self.showAlert = true
+            }
+        }
+    }
+    
     /// 모든 후보자 불러오기 (한 번에)
     func fetchAllCandidates(userID: String) {
         guard !isLoading else { return }
-        
+
         isLoading = true
         errorMessage = nil
         

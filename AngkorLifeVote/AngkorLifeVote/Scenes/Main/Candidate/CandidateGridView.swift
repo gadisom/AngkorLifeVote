@@ -22,53 +22,53 @@ struct CandidateGridView: View {
     ]
     
     var body: some View {
-        VStack(alignment: .leading, spacing: 20) {
-            VStack(alignment: .leading) {
-                Rectangle()
-                    .fill(Color.AK6f76ff)
-                    .frame(width: 19.41, height: 3)
+        ZStack{
+            VStack(alignment: .leading, spacing: 20) {
+                VStack(alignment: .leading) {
+                    Rectangle()
+                        .fill(Color.AK6f76ff)
+                        .frame(width: 19.41, height: 3)
+                    
+                    Text("2024\nCandidate List")
+                        .font(.kpSemiBold(.largeTitle))
+                        .foregroundStyle(.white)
+                        .padding(.bottom)
+                    HStack {
+                        Text("※ You can vote for up to 3 candidates")
+                            .font(.kpRegular())
+                            .foregroundStyle(Color.AKgray2)
+                        Spacer()
+                        Picker("정렬", selection: $viewModel.sortType) {
+                            ForEach([SortType.name, SortType.voteCntDesc, SortType.candidateNumber], id: \.self) { type in
+                                Text(type.sortValue)
+                                    .tag(type)
+                            }
+                        }
+                        .clipShape(RoundedRectangle(cornerRadius: 8))
+                        .background(Color.AKdbdbdb)
+                        .pickerStyle(MenuPickerStyle()) // 선택적으로 스타일 변경
+                        .clipShape(RoundedRectangle(cornerRadius: 30))
+                    }
+                }
+                .padding(.horizontal)
                 
-                Text("2024\nCandidate List")
-                    .font(.kpSemiBold(.largeTitle))
-                    .foregroundStyle(.white)
-                    .padding(.bottom)
-                HStack {
-                    Text("※ You can vote for up to 3 candidates")
-                        .font(.kpRegular())
-                        .foregroundStyle(Color.AKgray2)
-                    Spacer()
-                    Picker("정렬", selection: $viewModel.sortType) {
-                        ForEach([SortType.name, SortType.voteCntDesc, SortType.candidateNumber], id: \.self) { type in
-                            Text(type.sortValue)
-                                .tag(type)
+                LazyVGrid(columns: columns, spacing: 40) {
+                    ForEach(viewModel.candidates) { candidate in
+                        CandidateGridItemView(
+                            candidate: candidate,
+                            isVoted: viewModel.votedIDs.contains(candidate.id)
+                        ) { id in
+                            viewModel.vote(userID: userSession.userID, candidateID: id)
                         }
                     }
-                    .clipShape(RoundedRectangle(cornerRadius: 8))
-                    .background(Color.AKdbdbdb)
-                    .pickerStyle(MenuPickerStyle()) // 선택적으로 스타일 변경
-                    .clipShape(RoundedRectangle(cornerRadius: 30))
                 }
-            }
-            .padding(.horizontal)
-            
-            LazyVGrid(columns: columns, spacing: 40) {
-                ForEach(viewModel.candidates) { candidate in
-                    CandidateGridItemView(
-                        candidate: candidate,
-                        isVoted: viewModel.votedIDs.contains(candidate.id)
-                    )
-                    .onTapGesture {
-                        coordinator.selectedCandidate = candidate
-                    }
-                }
+                .padding()
                 
+                Text("COPYRIGHT © WUPSC ALL RIGHT RESERVED.")
+                    .font(.kpRegular(.caption))
+                    .foregroundStyle(Color.AKbackground)
+                    .frame(maxWidth: .infinity, alignment: .center)
             }
-            .padding()
-            
-            Text("COPYRIGHT © WUPSC ALL RIGHT RESERVED.")
-                .font(.kpRegular(.caption))
-                .foregroundStyle(Color.AKbackground)
-                .frame(maxWidth: .infinity, alignment: .center)
         }
         .background(Color.black)
         .background(
@@ -93,6 +93,7 @@ struct CandidateGridView: View {
                 EmptyView()
             }
         )
+        
         .refreshable {
             viewModel.fetchAllCandidates(userID: userSession.userID)
         }
