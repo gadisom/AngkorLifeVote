@@ -9,7 +9,9 @@ import SwiftUI
 
 struct LoginView: View {
     @EnvironmentObject var userSession: UserSession
-    @ObservedObject var viewModel: LoginViewModel
+    @State private var userID: String = ""
+    var onLoginSuccess: (() -> Void)?
+
     var body: some View {
         GeometryReader { proxy in
             VStack(alignment: .center) {
@@ -19,7 +21,7 @@ struct LoginView: View {
                     .padding(.vertical)
                 
                 VStack(spacing: 30) {
-                    TextField("", text: $viewModel.userID, prompt: Text("Enter your ID")
+                    TextField("", text: $userID, prompt: Text("Enter your ID")
                         .font(.kpRegular())
                         .foregroundColor(.AKgray2)
                     )
@@ -33,8 +35,8 @@ struct LoginView: View {
                         )
                         .padding(.horizontal)
                     Button(action: {
-                        userSession.userID = viewModel.userID
-                        viewModel.onLoginSuccess?()
+                        userSession.userID = userID
+                        onLoginSuccess?()
                     }){
                         Text("Log in")
                             .font(.kpBold(size: 16))
@@ -44,10 +46,10 @@ struct LoginView: View {
                             .background(Color.AK4232d5)
                             .clipShape(RoundedRectangle(cornerRadius: 999))
                     }
-                    .disabled(viewModel.userID.isEmpty)
+                    .disabled(userID.isEmpty)
                     .padding(.horizontal)
                     
-                    Text(viewModel.userID.isEmpty ? "Please enter your ID at least 1 character" : "")
+                    Text(userID.isEmpty ? "Please enter your ID at least 1 character" : "")
                         .foregroundStyle(.white)
                         .font(.kpRegular(.caption))
                     
@@ -96,7 +98,7 @@ struct WmuPosterView: View {
 
 
 #Preview {
-    LoginView(viewModel: LoginViewModel())
+    LoginView()
         .environmentObject(UserSession())
 }
 #Preview("w") {

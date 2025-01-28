@@ -17,7 +17,6 @@
 		BD764DFB2D426140008E94E5 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD764DFA2D426140008E94E5 /* User.swift */; };
 		BD764DFE2D426154008E94E5 /* CandidateServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD764DFD2D426154008E94E5 /* CandidateServiceProtocol.swift */; };
 		BD764E022D426176008E94E5 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD764E012D426176008E94E5 /* LoginView.swift */; };
-		BD764E042D42617D008E94E5 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD764E032D42617D008E94E5 /* LoginViewModel.swift */; };
 		BD764E072D426189008E94E5 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD764E062D426189008E94E5 /* MainView.swift */; };
 		BD764E0C2D4261B3008E94E5 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD764E0B2D4261B3008E94E5 /* ProfileView.swift */; };
 		BD764E0E2D4261B9008E94E5 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD764E0D2D4261B9008E94E5 /* ProfileViewModel.swift */; };
@@ -68,7 +67,6 @@
 		BD764DFA2D426140008E94E5 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		BD764DFD2D426154008E94E5 /* CandidateServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CandidateServiceProtocol.swift; sourceTree = "<group>"; };
 		BD764E012D426176008E94E5 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
-		BD764E032D42617D008E94E5 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		BD764E062D426189008E94E5 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		BD764E0B2D4261B3008E94E5 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		BD764E0D2D4261B9008E94E5 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
@@ -205,7 +203,6 @@
 			isa = PBXGroup;
 			children = (
 				BD764E012D426176008E94E5 /* LoginView.swift */,
-				BD764E032D42617D008E94E5 /* LoginViewModel.swift */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -402,7 +399,6 @@
 				BD764DF22D42610D008E94E5 /* Coordinator.swift in Sources */,
 				BD764E072D426189008E94E5 /* MainView.swift in Sources */,
 				BD764E4E2D4673E6008E94E5 /* CandidateDetailView.swift in Sources */,
-				BD764E042D42617D008E94E5 /* LoginViewModel.swift in Sources */,
 				BD764E462D452183008E94E5 /* CandidateGridView.swift in Sources */,
 				BD764DF62D426125008E94E5 /* MainCoordinator.swift in Sources */,
 				BD764DE92D425A3A008E94E5 /* AngkorLifeVoteApp.swift in Sources */,

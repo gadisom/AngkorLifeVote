@@ -11,11 +11,9 @@ final class LoginCoordinator: Coordinator {
     var onLoginSuccess: (() -> Void)?
     
     func start() -> AnyView {
-        let viewModel = LoginViewModel()
-        viewModel.onLoginSuccess = { [weak self] in
+        let loginView = LoginView(onLoginSuccess: { [weak self] in
             self?.onLoginSuccess?()
-        }
-        let view = LoginView(viewModel: viewModel)
-        return AnyView(view)
+        })
+        return AnyView(loginView)
     }
 }
