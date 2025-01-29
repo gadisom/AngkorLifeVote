@@ -15,7 +15,7 @@ struct MainView: View {
         ScrollView {
             
             WmuPosterView()
-                .padding(.vertical)
+                .padding(.bottom)
             
             CountDownView()
                 .padding(.horizontal, 40)

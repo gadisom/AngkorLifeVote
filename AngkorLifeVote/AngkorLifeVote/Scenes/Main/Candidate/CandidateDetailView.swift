@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Kingfisher
 
 struct CandidateDetailView: View {
     @ObservedObject var viewModel: CandidateDetailViewModel 
@@ -21,22 +22,24 @@ struct CandidateDetailView: View {
                             VStack(alignment: .leading, spacing: 20) {
                                 let infoList = viewModel.images
                                 if infoList.isEmpty {
-                                    Color.gray
-                                        .frame(width: proxy.size.width, height: proxy.size.width)
+                                    Button("Retry") {
+                                        viewModel.fetchDetail()
+                                    }
                                 } else {
                                     TabView(selection: $viewModel.currentIndex) {
                                         ForEach(Array(infoList.enumerated()), id: \.offset) { (index, info) in
-                                            AsyncImage(url: URL(string: info.profileUrl)) { image in
-                                                image
-                                                    .resizable()
-                                                    .scaledToFit()
-                                            } placeholder: {
-                                                Color.gray
-                                            }
+                                            KFImage(URL(string: info.profileUrl))
+                                                .placeholder {
+                                                    ProgressView()
+                                                        .frame(maxWidth: .infinity, maxHeight: .infinity)
+                                                        .background(.gray)
+                                                }
+                                                .resizable()
+                                                .scaledToFit()
                                             .tag(index)
                                         }
                                     }
-                                    .frame(width: proxy.size.width, height: proxy.size.width)
+                                    .aspectRatio(1, contentMode: .fit)
                                     .tabViewStyle(PageTabViewStyle(indexDisplayMode: .always))
                                 }
                                 
@@ -83,7 +86,6 @@ struct CandidateDetailView: View {
                                 .padding()
                             }
                         }
-                        .background(Color.black)
                     } else if let error = viewModel.errorMessage {
                         VStack {
                             Text("Error: \(error)")
@@ -97,6 +99,7 @@ struct CandidateDetailView: View {
                         Text("No data")
                     }
                 }
+                .background(Color.black)
                 if viewModel.showAlert {
                     Color.black.opacity(0.5)
                         .edgesIgnoringSafeArea(.all)
@@ -105,7 +108,6 @@ struct CandidateDetailView: View {
                                 viewModel.showAlert = false
                             }
                         }
-                    
                     CustomAlertView(
                         title: viewModel.alertMessage == "Thank you for voting" ? "Voting Completed" : "Voting Failed",
                         message: viewModel.alertMessage ?? "Thank you for voting.",
@@ -119,7 +121,7 @@ struct CandidateDetailView: View {
                     )
                     .frame(width: proxy.size.width * 0.8)
                     .background(Color.white)
-                    .cornerRadius(12)
+                    .clipShape(RoundedRectangle(cornerRadius: 12))
                     .shadow(radius: 10)
                     .transition(.scale)
                     .zIndex(1) // 다른 뷰들 위에 표시되도록 설정

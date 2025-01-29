@@ -50,6 +50,7 @@
 		BD764E542D474A00008E94E5 /* CandidateDetailResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD764E532D474A00008E94E5 /* CandidateDetailResponse.swift */; };
 		BD764E562D4778B9008E94E5 /* ToastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD764E552D4778B9008E94E5 /* ToastView.swift */; };
 		BD764E582D488D18008E94E5 /* CountDownViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD764E572D488D18008E94E5 /* CountDownViewModel.swift */; };
+		BD764E632D49E5BC008E94E5 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = BD764E622D49E5BC008E94E5 /* Kingfisher */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -105,6 +106,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BD764E632D49E5BC008E94E5 /* Kingfisher in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -323,6 +325,7 @@
 			);
 			name = AngkorLifeVote;
 			packageProductDependencies = (
+				BD764E622D49E5BC008E94E5 /* Kingfisher */,
 			);
 			productName = AngkorLifeVote;
 			productReference = BD764DD22D425A2F008E94E5 /* AngkorLifeVote.app */;
@@ -352,6 +355,9 @@
 			);
 			mainGroup = BD764DC92D425A2F008E94E5;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				BD764E612D49E5BB008E94E5 /* XCRemoteSwiftPackageReference "Kingfisher" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = BD764DD32D425A2F008E94E5 /* Products */;
 			projectDirPath = "";
@@ -627,6 +633,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		BD764E612D49E5BB008E94E5 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 8.1.3;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		BD764E622D49E5BC008E94E5 /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = BD764E612D49E5BB008E94E5 /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = BD764DCA2D425A2F008E94E5 /* Project object */;
 }

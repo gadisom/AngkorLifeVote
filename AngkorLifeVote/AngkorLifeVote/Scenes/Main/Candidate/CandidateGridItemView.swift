@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Kingfisher
 
 struct CandidateGridItemView: View {
     @EnvironmentObject var coordinator: MainCoordinator
@@ -15,23 +16,19 @@ struct CandidateGridItemView: View {
     
     var body: some View {
         VStack(spacing: 8) {
-            GeometryReader { geometry in
-                AsyncImage(url: URL(string: candidate.profileUrl)) { image in
-                    image
-                        .resizable()
-                        .scaledToFit()
-                        .clipShape(RoundedRectangle(cornerRadius: 8))
-                } placeholder: {
+            KFImage(URL(string: candidate.profileUrl))
+                .placeholder {
                     ProgressView()
-                        .foregroundStyle(.white)
-                        .frame(width: geometry.size.width, height: geometry.size.width)
-                        .clipShape(RoundedRectangle(cornerRadius: 8))
+                        .frame(maxWidth: .infinity, maxHeight: .infinity)
+                        .background(.gray)
                 }
+                .resizable()
+                .scaledToFit()
+                .clipShape(RoundedRectangle(cornerRadius: 8))
                 .onTapGesture {
                     coordinator.selectedCandidate = candidate
                 }
-            }
-            .aspectRatio(1, contentMode: .fit) 
+            .aspectRatio(1, contentMode: .fit)
 
             Text(candidate.name)
                 .font(.kpMedium(.headline))

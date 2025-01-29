@@ -18,7 +18,7 @@ struct LoginView: View {
                 Spacer()
                 
                 WmuPosterView()
-                    .padding(.vertical)
+                    .padding(.bottom)
                 
                 VStack(spacing: 30) {
                     TextField("", text: $userID, prompt: Text("Enter your ID")
@@ -73,13 +73,12 @@ struct WmuPosterView: View {
             Text("WORLD MISS UNIVERSITY")
                 .font(.kpMedium(.title))
                 .foregroundColor(.white)
-                .padding(.bottom)
                 .multilineTextAlignment(.center)
             
             Text("CAMBODIA 2024")
                 .font(.kpLight(.title2))
                 .foregroundColor(.white)
-                .padding()
+                .padding(.vertical, 4)
             
             Image(.crown)
                 .resizable()
@@ -92,7 +91,6 @@ struct WmuPosterView: View {
                 .foregroundColor(.white)
                 .multilineTextAlignment(.center)
         }
-        .background(.black)
     }
 }
 
