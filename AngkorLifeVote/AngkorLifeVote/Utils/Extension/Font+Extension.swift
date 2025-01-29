@@ -8,109 +8,91 @@
 import SwiftUI
 
 extension Font {
-    private static let kpFontBoldName = "KantumruyPro-Bold"
-    private static let kpFontSemiBoldName = "KantumruyPro-SemiBold"
-    private static let kpFontMediumName = "KantumruyPro-Medium"
-    private static let kpFontLightName = "KantumruyPro-Light"
-    private static let kpFontExtraLightName = "KantumruyPro-ExtraLight"
-    private static let kpFontRegularName = "KantumruyPro-Regular"
-    
-    static func kpBold(
-        _ style: TextStyle? = nil,
-        size: CGFloat? = nil
-    ) -> Font {
-        if let size = size {
-            return .custom(kpFontBoldName, size: size, relativeTo: style ?? .body)
-        } else if let style = style {
-            return .custom(kpFontBoldName, size: UIFont.preferredFont(forTextStyle: UIFont.TextStyle(style)).pointSize, relativeTo: style)
-        } else {
-            return .custom(kpFontBoldName, size: UIFont.preferredFont(forTextStyle: .body).pointSize)
-        }
+    /// 폰트 종류
+    enum KPFONTStyle: String {
+        case bold = "KantumruyPro-Bold"
+        case semiBold = "KantumruyPro-SemiBold"
+        case medium = "KantumruyPro-Medium"
+        case light = "KantumruyPro-Light"
+        case extraLight = "KantumruyPro-ExtraLight"
+        case regular = "KantumruyPro-Regular"
     }
-    
-    static func kpSemiBold(
-        _ style: TextStyle? = nil,
-        size: CGFloat? = nil
-    ) -> Font {
-        if let size = size {
-            return .custom(kpFontSemiBoldName, size: size, relativeTo: style ?? .body)
-        } else if let style = style {
-            return .custom(kpFontSemiBoldName, size: UIFont.preferredFont(forTextStyle: UIFont.TextStyle(style)).pointSize, relativeTo: style)
-        } else {
-            return .custom(kpFontSemiBoldName, size: UIFont.preferredFont(forTextStyle: .body).pointSize)
-        }
-    }
-    
-    static func kpMedium(
-        _ style: TextStyle? = nil,
-        size: CGFloat? = nil
-    ) -> Font {
-        if let size = size {
-            return .custom(kpFontMediumName, size: size, relativeTo: style ?? .body)
-        } else if let style = style {
-            return .custom(kpFontMediumName, size: UIFont.preferredFont(forTextStyle: UIFont.TextStyle(style)).pointSize, relativeTo: style)
-        } else {
-            return .custom(kpFontMediumName, size: UIFont.preferredFont(forTextStyle: .body).pointSize)
-        }
-    }
-    
-    static func kpLight(
-        _ style: TextStyle? = nil,
-        size: CGFloat? = nil
-    ) -> Font {
-        if let size = size {
-            return .custom(kpFontLightName, size: size, relativeTo: style ?? .body)
-        } else if let style = style {
-            return .custom(kpFontLightName, size: UIFont.preferredFont(forTextStyle: UIFont.TextStyle(style)).pointSize, relativeTo: style)
-        } else {
-            return .custom(kpFontLightName, size: UIFont.preferredFont(forTextStyle: .body).pointSize)
-        }
-    }
-    
-    static func kpExtraLight(
-        _ style: TextStyle? = nil,
-        size: CGFloat? = nil
-    ) -> Font {
-        if let size = size {
-            return .custom(kpFontExtraLightName, size: size, relativeTo: style ?? .body)
-        } else if let style = style {
-            return .custom(kpFontExtraLightName, size: UIFont.preferredFont(forTextStyle: UIFont.TextStyle(style)).pointSize, relativeTo: style)
-        } else {
-            return .custom(kpFontExtraLightName, size: UIFont.preferredFont(forTextStyle: .body).pointSize)
-        }
-    }
-    
-    static func kpRegular(
-        _ style: TextStyle? = nil,
-        size: CGFloat? = nil
-    ) -> Font {
-        if let size = size {
-            return .custom(kpFontRegularName, size: size, relativeTo: style ?? .body)
-        } else if let style = style {
-            return .custom(kpFontRegularName, size: UIFont.preferredFont(forTextStyle: UIFont.TextStyle(style)).pointSize, relativeTo: style)
-        } else {
-            return .custom(kpFontRegularName, size: UIFont.preferredFont(forTextStyle: .body).pointSize)
-        }
-    }
-    
-    
-}
 
-private extension UIFont.TextStyle {
-    init(_ textStyle: Font.TextStyle) {
+    /// Font.TextStyle을 UIFont.TextStyle로 매핑하는 헬퍼 메서드
+    private static func mapTextStyle(_ textStyle: Font.TextStyle) -> UIFont.TextStyle {
         switch textStyle {
-        case .largeTitle: self = .largeTitle
-        case .title: self = .title1
-        case .title2: self = .title2
-        case .title3: self = .title3
-        case .headline: self = .headline
-        case .subheadline: self = .subheadline
-        case .body: self = .body
-        case .callout: self = .callout
-        case .caption: self = .caption1
-        case .caption2: self = .caption2
-        case .footnote: self = .footnote
-        @unknown default: self = .body
+        case .largeTitle: return .largeTitle
+        case .title: return .title1
+        case .title2: return .title2
+        case .title3: return .title3
+        case .headline: return .headline
+        case .subheadline: return .subheadline
+        case .body: return .body
+        case .callout: return .callout
+        case .caption: return .caption1
+        case .caption2: return .caption2
+        case .footnote: return .footnote
+        @unknown default: return .body
         }
+    }
+
+    /// 공통 폰트 생성 메서드
+    private static func kpFont(
+        _ style: KPFONTStyle,
+        textStyle: TextStyle? = nil,
+        size: CGFloat? = nil
+    ) -> Font {
+        if let size = size {
+            return .custom(style.rawValue, size: size, relativeTo: textStyle ?? .body)
+        } else if let textStyle = textStyle {
+            let uiTextStyle = mapTextStyle(textStyle)
+            let defaultSize = UIFont.preferredFont(forTextStyle: uiTextStyle).pointSize
+            return .custom(style.rawValue, size: defaultSize, relativeTo: textStyle)
+        } else {
+            let defaultSize = UIFont.preferredFont(forTextStyle: .body).pointSize
+            return .custom(style.rawValue, size: defaultSize)
+        }
+    }
+
+    static func kpBold(
+        _ textStyle: TextStyle? = nil,
+        size: CGFloat? = nil
+    ) -> Font {
+        kpFont(.bold, textStyle: textStyle, size: size)
+    }
+
+    static func kpSemiBold(
+        _ textStyle: TextStyle? = nil,
+        size: CGFloat? = nil
+    ) -> Font {
+        kpFont(.semiBold, textStyle: textStyle, size: size)
+    }
+
+    static func kpMedium(
+        _ textStyle: TextStyle? = nil,
+        size: CGFloat? = nil
+    ) -> Font {
+        kpFont(.medium, textStyle: textStyle, size: size)
+    }
+
+    static func kpLight(
+        _ textStyle: TextStyle? = nil,
+        size: CGFloat? = nil
+    ) -> Font {
+        kpFont(.light, textStyle: textStyle, size: size)
+    }
+
+    static func kpExtraLight(
+        _ textStyle: TextStyle? = nil,
+        size: CGFloat? = nil
+    ) -> Font {
+        kpFont(.extraLight, textStyle: textStyle, size: size)
+    }
+
+    static func kpRegular(
+        _ textStyle: TextStyle? = nil,
+        size: CGFloat? = nil
+    ) -> Font {
+        kpFont(.regular, textStyle: textStyle, size: size)
     }
 }
