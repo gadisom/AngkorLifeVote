@@ -8,7 +8,7 @@
 import SwiftUI
 import Combine
 
-final class CandidateGridViewModel: ObservableObject {
+final class CandidateListViewModel: ObservableObject {
     @EnvironmentObject var userSession: UserSession
     @Published var candidates: [CandidateItem] = []
     @Published var isLoading: Bool = false
@@ -24,9 +24,17 @@ final class CandidateGridViewModel: ObservableObject {
     init(candidateService: CandidateServiceProtocol) {
         self.candidateService = candidateService
     }
-    
+     
     func vote(userID: String, candidateID: Int) {
         guard !isLoading else { return }
+        
+        // 이미 투표 3명한 경우 
+        if votedIDs.count >= 3 && !votedIDs.contains(candidateID) {
+            self.alertMessage = "You have already voted for 3 candidates."
+            self.showAlert = true
+            return
+        }
+        
         isLoading = true
         errorMessage = nil
         

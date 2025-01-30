@@ -7,13 +7,17 @@
 
 import SwiftUI
 
-struct CandidateGridView: View {
+struct CandidateListView: View {
     @EnvironmentObject var userSession: UserSession
     @EnvironmentObject var coordinator: MainCoordinator
-    @StateObject private var viewModel: CandidateGridViewModel
+    @StateObject private var viewModel: CandidateListViewModel
     @State private var isVoted: Bool = false
-    init(candidateService: CandidateServiceProtocol) {
-        _viewModel = StateObject(wrappedValue: CandidateGridViewModel(candidateService: candidateService))
+    let onAlert: (String) -> Void
+    
+    init(candidateService: CandidateServiceProtocol,
+         onAlert: @escaping (String) -> Void) {
+        _viewModel = StateObject(wrappedValue: CandidateListViewModel(candidateService: candidateService))
+        self.onAlert = onAlert
     }
     
     private let columns = [
@@ -111,13 +115,20 @@ struct CandidateGridView: View {
         .onReceive(viewModel.$sortType) { _ in
             viewModel.fetchAllCandidates(userID: userSession.userID)
         }
+        
+        .onReceive(viewModel.$showAlert) { newValue in
+            if newValue {
+                onAlert(viewModel.alertMessage)
+                viewModel.showAlert = false
+            }
+        }
     }
 }
 
 #Preview {
     NavigationView {
         ScrollView {
-            CandidateGridView(candidateService: CandidateService())
+            CandidateListView(candidateService: CandidateService(), onAlert: { _ in })
                 .environmentObject(UserSession())
                 .environmentObject(MainCoordinator(appCoordinator: AppCoordinator()))
         }
