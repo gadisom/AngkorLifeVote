@@ -34,6 +34,7 @@ struct LoginView: View {
                                 .stroke(Color.AKdbdbdb, lineWidth: 0.5)
                         )
                         .padding(.horizontal)
+                    
                     Button(action: {
                         userSession.userID = userID
                         onLoginSuccess?()

@@ -20,6 +20,7 @@ struct CandidateDetailView: View {
                     if let detail = viewModel.candidateDetail {
                         ScrollView {
                             VStack(alignment: .leading, spacing: 20) {
+                                // MARK: - 이미지 페이저
                                 let infoList = viewModel.images
                                 if infoList.isEmpty {
                                     Button("Retry") {

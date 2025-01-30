@@ -16,6 +16,7 @@ struct MainView: View {
     
     var body: some View {
         ZStack {
+            // MARK: - 메인 화면 뷰 
             ScrollView {
                 
                 WmuPosterView()
@@ -36,6 +37,7 @@ struct MainView: View {
                     showAlert = true
                 })
             }
+            // MARK: - 투표 시 alert 띄우기
             if showAlert {
                 Color.black.opacity(0.5)
                     .edgesIgnoringSafeArea(.all)

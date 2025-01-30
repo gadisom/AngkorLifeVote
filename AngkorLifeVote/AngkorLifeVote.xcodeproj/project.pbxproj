@@ -47,7 +47,7 @@
 		BD764E4E2D4673E6008E94E5 /* CandidateDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD764E4D2D4673E6008E94E5 /* CandidateDetailView.swift */; };
 		BD764E502D4748C9008E94E5 /* CandidateDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD764E4F2D4748C9008E94E5 /* CandidateDetail.swift */; };
 		BD764E522D474907008E94E5 /* CandidateDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD764E512D474907008E94E5 /* CandidateDetailViewModel.swift */; };
-		BD764E562D4778B9008E94E5 /* ToastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD764E552D4778B9008E94E5 /* ToastView.swift */; };
+		BD764E562D4778B9008E94E5 /* CustomAlertViewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD764E552D4778B9008E94E5 /* CustomAlertViewView.swift */; };
 		BD764E582D488D18008E94E5 /* CountDownViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD764E572D488D18008E94E5 /* CountDownViewModel.swift */; };
 		BD764E632D49E5BC008E94E5 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = BD764E622D49E5BC008E94E5 /* Kingfisher */; };
 /* End PBXBuildFile section */
@@ -95,7 +95,7 @@
 		BD764E4D2D4673E6008E94E5 /* CandidateDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CandidateDetailView.swift; sourceTree = "<group>"; };
 		BD764E4F2D4748C9008E94E5 /* CandidateDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CandidateDetail.swift; sourceTree = "<group>"; };
 		BD764E512D474907008E94E5 /* CandidateDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CandidateDetailViewModel.swift; sourceTree = "<group>"; };
-		BD764E552D4778B9008E94E5 /* ToastView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastView.swift; sourceTree = "<group>"; };
+		BD764E552D4778B9008E94E5 /* CustomAlertViewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAlertViewView.swift; sourceTree = "<group>"; };
 		BD764E572D488D18008E94E5 /* CountDownViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountDownViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -174,8 +174,8 @@
 		BD764DFC2D426144008E94E5 /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				BD764DFD2D426154008E94E5 /* CandidateServiceProtocol.swift */,
 				BD764E402D451D05008E94E5 /* CandidateService.swift */,
+				BD764DFD2D426154008E94E5 /* CandidateServiceProtocol.swift */,
 				BD764E422D451F49008E94E5 /* VoteAPI.swift */,
 			);
 			path = Services;
@@ -204,7 +204,6 @@
 				BD764E062D426189008E94E5 /* MainView.swift */,
 				BD764E392D44B35A008E94E5 /* VotingInfoView.swift */,
 				BD764E442D452173008E94E5 /* Candidate */,
-				BD764E382D44B346008E94E5 /* VotingInfo */,
 				BD764E352D44B20F008E94E5 /* CountDown */,
 			);
 			path = Main;
@@ -258,13 +257,6 @@
 			path = CountDown;
 			sourceTree = "<group>";
 		};
-		BD764E382D44B346008E94E5 /* VotingInfo */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = VotingInfo;
-			sourceTree = "<group>";
-		};
 		BD764E3B2D450CF3008E94E5 /* Candiate */ = {
 			isa = PBXGroup;
 			children = (
@@ -300,7 +292,7 @@
 		BD764E602D48EBCB008E94E5 /* Global */ = {
 			isa = PBXGroup;
 			children = (
-				BD764E552D4778B9008E94E5 /* ToastView.swift */,
+				BD764E552D4778B9008E94E5 /* CustomAlertViewView.swift */,
 			);
 			path = Global;
 			sourceTree = "<group>";
@@ -417,7 +409,7 @@
 				BD764E022D426176008E94E5 /* LoginView.swift in Sources */,
 				BD764E502D4748C9008E94E5 /* CandidateDetail.swift in Sources */,
 				BD764E522D474907008E94E5 /* CandidateDetailViewModel.swift in Sources */,
-				BD764E562D4778B9008E94E5 /* ToastView.swift in Sources */,
+				BD764E562D4778B9008E94E5 /* CustomAlertViewView.swift in Sources */,
 				BD764E322D435FC4008E94E5 /* Color+Extension.swift in Sources */,
 				BD764E342D436C06008E94E5 /* UserSession.swift in Sources */,
 				BD764E302D432381008E94E5 /* Font+Extension.swift in Sources */,

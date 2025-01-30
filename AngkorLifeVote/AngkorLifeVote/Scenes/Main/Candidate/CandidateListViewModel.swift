@@ -15,8 +15,7 @@ final class CandidateListViewModel: ObservableObject {
     @Published var errorMessage: String?
     @Published var alertMessage = ""
     @Published var showAlert: Bool = false
-    // 이미 투표한 후보자 ID들
-    @Published var votedIDs: Set<Int> = []
+    @Published var votedIDs: Set<Int> = []  // 이미 투표한 후보자 ID들
     @Published var sortType: SortType = .name
     
     private let candidateService: CandidateServiceProtocol
@@ -24,7 +23,8 @@ final class CandidateListViewModel: ObservableObject {
     init(candidateService: CandidateServiceProtocol) {
         self.candidateService = candidateService
     }
-     
+    
+    /// 투표 로직
     func vote(userID: String, candidateID: Int) {
         guard !isLoading else { return }
         
@@ -54,7 +54,7 @@ final class CandidateListViewModel: ObservableObject {
         }
     }
     
-    /// 모든 후보자 불러오기 (한 번에)
+    /// 모든 후보자 한번에 불러오기
     func fetchAllCandidates(userID: String) {
         guard !isLoading else { return }
 

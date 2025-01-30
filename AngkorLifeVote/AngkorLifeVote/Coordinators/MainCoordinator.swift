@@ -15,6 +15,7 @@ final class MainCoordinator: Coordinator, ObservableObject {
         self.appCoordinator = appCoordinator
     }
     
+    /// 시작 처리
     func start() -> AnyView {
         return AnyView(
             NavigationView {

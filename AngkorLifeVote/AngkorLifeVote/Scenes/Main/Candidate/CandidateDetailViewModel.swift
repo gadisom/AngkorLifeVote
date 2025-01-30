@@ -15,9 +15,12 @@ final class CandidateDetailViewModel: ObservableObject {
     @Published var showAlert: Bool = false
     @Published var alertMessage: String?
     @Published var currentIndex: Int = 0
+
+    var images: [ProfileInfo] {
+        candidateDetail?.profileInfoList ?? []
+    }
     
     private var timerTask: Task<Void, Never>?
-    
     private let userID: String
     private let id: Int
     private let candidateService: CandidateServiceProtocol
@@ -30,6 +33,7 @@ final class CandidateDetailViewModel: ObservableObject {
         fetchDetail()
     }
     
+    /// 디테일 정보 불러오기
     func fetchDetail() {
         guard !isLoading else { return }
         
@@ -52,11 +56,28 @@ final class CandidateDetailViewModel: ObservableObject {
             }
         }
     }
-    
-    /// 프로필 이미지 배열 (null-check)
-    var images: [ProfileInfo] {
-        candidateDetail?.profileInfoList ?? []
+    /// 투표하기 
+    func vote() {
+        guard !isLoading else { return }
+        isLoading = true
+        errorMessage = nil
+        
+        Task {
+            let success = await candidateService.vote(userID: userID,
+                                                      candidateID: id)
+            await MainActor.run {
+                self.isLoading = false
+                if success {
+                    self.alertMessage = "Thank you for voting"
+                } else {
+                    self.alertMessage = "You have already voted or failed."
+                }
+                self.showAlert = true
+            }
+        }
     }
+    
+    // MARK: - 타이머 관련 메서드
     
     /// 3초마다 다음 이미지로 이동
     func startAutoSlide() {
@@ -84,23 +105,5 @@ final class CandidateDetailViewModel: ObservableObject {
         timerTask = nil
     }
     
-    func vote() {
-        guard !isLoading else { return }
-        isLoading = true
-        errorMessage = nil
-        
-        Task {
-            let success = await candidateService.vote(userID: userID,
-                                                      candidateID: id)
-            await MainActor.run {
-                self.isLoading = false
-                if success {
-                    self.alertMessage = "Thank you for voting"
-                } else {
-                    self.alertMessage = "You have already voted or failed."
-                }
-                self.showAlert = true
-            }
-        }
-    }
+   
 }
