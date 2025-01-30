@@ -44,8 +44,9 @@ struct LoginView: View {
                             .foregroundColor(.white)
                             .frame(maxWidth: .infinity)
                             .padding()
-                            .background(Color.AK4232d5)
+                            .background(userID.isEmpty ? Color.gray : Color.AK4232d5)
                             .clipShape(RoundedRectangle(cornerRadius: 999))
+                            .opacity(userID.isEmpty ? 0.6 : 1.0)
                     }
                     .disabled(userID.isEmpty)
                     .padding(.horizontal)
